@@ -48,7 +48,7 @@ const inputDecorationTheme = InputDecorationTheme(
 );
 
 final mainButtonTheme = OutlinedButtonThemeData(style: mainButtonStyle);
-final seondaryButtonTheme = OutlinedButtonThemeData(style: secondaryButtonStyle);
+final secondaryButtonTheme = OutlinedButtonThemeData(style: secondaryButtonStyle);
 
 final mainButtonStyle = ButtonStyle(
   side: resolver(BorderSide.none),
@@ -71,6 +71,14 @@ final mainButtonStyle = ButtonStyle(
   ),
 );
 final secondaryButtonStyle = mainButtonStyle.copyWith(
+  padding: resolver(EdgeInsets.zero),
+  shape: resolver(
+    const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(12),
+      ),
+    ),
+  ),
   backgroundColor: resolver(
     Colors.white,
   ),
