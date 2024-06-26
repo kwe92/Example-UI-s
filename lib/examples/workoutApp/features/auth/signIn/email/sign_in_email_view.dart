@@ -1,5 +1,6 @@
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/email/sign_in_email_view_model.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -76,8 +77,8 @@ class SignInEmailView extends StatelessWidget {
                   SizedBox(
                     width: double.maxFinite,
                     height: 56,
-                    child: OutlinedButton(
-                      onPressed: () {
+                    child: CustomButton(
+                      onTap: () {
                         if (formKey.currentState?.validate() ?? false) {
                           Navigator.push(
                             context,
@@ -87,7 +88,7 @@ class SignInEmailView extends StatelessWidget {
                           );
                         }
                       },
-                      child: const Text("Continue"),
+                      label: "Continue",
                     ),
                   ),
                   const SizedBox(height: 24),

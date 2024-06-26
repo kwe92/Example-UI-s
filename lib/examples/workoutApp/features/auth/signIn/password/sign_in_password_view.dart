@@ -1,4 +1,5 @@
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view_model.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -86,11 +87,11 @@ class SignInPasswordView extends StatelessWidget {
                   SizedBox(
                     width: double.maxFinite,
                     height: 56,
-                    child: OutlinedButton(
-                      onPressed: () {
+                    child: CustomButton(
+                      onTap: () {
                         if (formKey.currentState?.validate() ?? false) {}
                       },
-                      child: const Text("Sign in"),
+                      label: "Sign in",
                     ),
                   ),
                   const SizedBox(height: 24),
