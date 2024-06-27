@@ -8,7 +8,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: WorkoutAppTheme.getTheme(),
-      home: const NavigatorView(),
+      home: SignInEmailView(),
     ),
   );
 }
