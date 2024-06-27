@@ -1,4 +1,5 @@
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view_model.dart';
+import 'package:example_ui/examples/workoutApp/features/navigator/navigator_view.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -89,7 +90,14 @@ class SignInPasswordView extends StatelessWidget {
                     height: 56,
                     child: CustomButton(
                       onTap: () {
-                        if (formKey.currentState?.validate() ?? false) {}
+                        if (formKey.currentState?.validate() ?? false) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const NavigatorView(),
+                            ),
+                          );
+                        }
                       },
                       label: "Sign in",
                     ),
