@@ -59,7 +59,7 @@ class SignInEmailView extends StatelessWidget {
                         suffixIcon: Padding(
                           padding: const EdgeInsets.only(right: 16.0),
                           child: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/workoutApp/app/assets/password_visibility_icon.svg",
+                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/password_visibility_icon.svg",
                           ),
                         ),
                         suffixIconConstraints: const BoxConstraints(maxHeight: 48, maxWidth: 48),
@@ -130,20 +130,20 @@ class SignInEmailView extends StatelessWidget {
                       SocialIconButton(
                         onTap: () {},
                         icon: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/workoutApp/app/assets/google_icon.svg"),
+                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/google_icon.svg"),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: SocialIconButton(
                           onTap: () {},
                           icon: SvgPicture.asset(
-                              "/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/workoutApp/app/assets/apple_icon.svg"),
+                              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/apple_icon.svg"),
                         ),
                       ),
                       SocialIconButton(
                         onTap: () {},
                         icon: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/workoutApp/app/assets/facebook_icon.svg"),
+                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/facebook_icon.svg"),
                       ),
                     ],
                   )
