@@ -18,12 +18,14 @@ class WorkoutAppTheme {
       // ),
       colorScheme: const ColorScheme.dark(
         primary: WorkoutAppColors.mainThemeColor,
+        onSurface: WorkoutAppColors.primaryTextColor,
       ),
       scaffoldBackgroundColor: Colors.black,
       appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
       inputDecorationTheme: inputDecorationTheme,
       outlinedButtonTheme: mainButtonTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme,
+      progressIndicatorTheme: const ProgressIndicatorThemeData(color: WorkoutAppColors.mainThemeColor),
     );
   }
 }
