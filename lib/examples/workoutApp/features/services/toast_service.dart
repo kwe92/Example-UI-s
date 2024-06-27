@@ -64,7 +64,7 @@ class ToastService {
   }
 }
 
-// TODO: should be in ita own module
+// TODO: should be in its own module
 
 class NotificationListTile extends StatelessWidget {
   final AppNotification notification;
