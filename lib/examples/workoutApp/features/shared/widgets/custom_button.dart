@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
   final String label;
-  final double width;
+  final double? width;
   final double height;
   final OutlinedButtonThemeData? buttonTheme;
   const CustomButton({
