@@ -19,7 +19,8 @@ class WorkoutAppTheme {
       colorScheme: const ColorScheme.dark(
         primary: WorkoutAppColors.mainThemeColor,
       ),
-      // scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: Colors.black,
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
       inputDecorationTheme: inputDecorationTheme,
       outlinedButtonTheme: mainButtonTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme,
@@ -49,6 +50,8 @@ const inputDecorationTheme = InputDecorationTheme(
 
 final mainButtonTheme = OutlinedButtonThemeData(style: mainButtonStyle);
 final secondaryButtonTheme = OutlinedButtonThemeData(style: secondaryButtonStyle);
+final categoryButtonTheme = OutlinedButtonThemeData(style: categoryButtonStyle);
+final deactiveCategoryButtonTheme = OutlinedButtonThemeData(style: deactiveCategoryButtonStyle);
 
 final mainButtonStyle = ButtonStyle(
   side: resolver(BorderSide.none),
@@ -70,6 +73,7 @@ final mainButtonStyle = ButtonStyle(
     ),
   ),
 );
+
 final secondaryButtonStyle = mainButtonStyle.copyWith(
   padding: resolver(EdgeInsets.zero),
   shape: resolver(
@@ -87,6 +91,56 @@ final secondaryButtonStyle = mainButtonStyle.copyWith(
       foreground: Paint()..color = WorkoutAppColors.mainThemeColor,
       fontSize: 14,
       fontWeight: FontWeight.w700,
+    ),
+  ),
+);
+
+final categoryButtonStyle = mainButtonStyle.copyWith(
+  padding: resolver(
+    const EdgeInsets.symmetric(horizontal: 16),
+  ),
+  side: resolver(
+    const BorderSide(
+      width: 2,
+      color: WorkoutAppColors.mainThemeColor,
+    ),
+  ),
+  shape: resolver(
+    const StadiumBorder(),
+  ),
+  backgroundColor: resolver(
+    Colors.black,
+  ),
+  textStyle: resolver(
+    TextStyle(
+      foreground: Paint()..color = WorkoutAppColors.mainThemeColor,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
+  ),
+);
+
+final deactiveCategoryButtonStyle = mainButtonStyle.copyWith(
+  padding: resolver(
+    const EdgeInsets.symmetric(horizontal: 16),
+  ),
+  side: resolver(
+    const BorderSide(
+      width: 2,
+      color: Color(0xff272641),
+    ),
+  ),
+  shape: resolver(
+    const StadiumBorder(),
+  ),
+  backgroundColor: resolver(
+    Colors.black,
+  ),
+  textStyle: resolver(
+    TextStyle(
+      foreground: Paint()..color = const Color(0xff9B9BC2),
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
     ),
   ),
 );
