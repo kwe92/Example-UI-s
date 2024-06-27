@@ -1,5 +1,7 @@
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/exercise_category.dart';
+import 'package:example_ui/examples/workoutApp/features/dashboard/model/notification.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_progress.dart';
+import 'package:example_ui/examples/workoutApp/features/services/notification_service.dart';
 import 'package:flutter/material.dart';
 
 class DashboardViewModel extends ChangeNotifier {
@@ -7,9 +9,15 @@ class DashboardViewModel extends ChangeNotifier {
 
   final _categories = ["All", "Warm Up", "Yoga", "Biceps", "Chest", "Legs"];
 
+  bool _isBusy = false;
+
   int get selectedCategory => _selectedCategory;
 
   List<String> get categories => _categories;
+
+  bool get isBusy => _isBusy;
+
+  List<AppNotification> get notifications => notificationService.notifications;
 
   List<WorkoutProgress> get workoutProgress => [
         WorkoutProgress(
@@ -84,5 +92,16 @@ class DashboardViewModel extends ChangeNotifier {
     debugPrint("$_selectedCategory");
 
     notifyListeners();
+  }
+
+  void setBusy(bool isBusy) {
+    _isBusy = isBusy;
+    notifyListeners();
+  }
+
+  Future<void> getNotifications() async {
+    setBusy(true);
+    await notificationService.getNotifications();
+    setBusy(false);
   }
 }
