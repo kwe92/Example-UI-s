@@ -1,8 +1,11 @@
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view_model.dart';
+import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
+import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
 import 'package:example_ui/examples/workoutApp/features/navigator/navigator_view.dart';
+import 'package:example_ui/examples/workoutApp/features/services/string_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/widgets/visibility_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 // TODO: combine like widgets from SignInEmailView
 
@@ -50,27 +53,17 @@ class SignInPasswordView extends StatelessWidget {
                     child: TextFormField(
                       controller: emailController,
                       onChanged: viewModel.setPassword,
-                      // TODO: set obscureText in view model
-                      // obscureText: true,
+                      obscureText: viewModel.isObscured,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                         hintText: "Enter password",
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/password_visibility_icon.svg",
-                          ),
+                        suffixIcon: VisibilityWidget(
+                          onTap: () => viewModel.setObscure(!viewModel.isObscured),
+                          isObscured: viewModel.isObscured,
                         ),
                         suffixIconConstraints: const BoxConstraints(maxHeight: 48, maxWidth: 48),
                       ),
-                      validator:
-                          // TODO: move validator to service
-                          (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Value can't be empty.";
-                        }
-                        return null;
-                      },
+                      validator: StringService.passwordValidator,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -84,7 +77,7 @@ class SignInPasswordView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
                   SizedBox(
                     width: double.maxFinite,
                     height: 56,
@@ -118,85 +111,15 @@ class SignInPasswordView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
-                  Row(
-                    children: [
-                      horizontalLine(),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          "Or",
-                          style: TextStyle(
-                            color: Color(0xff81809E),
-                          ),
-                        ),
-                      ),
-                      horizontalLine()
-                    ],
-                  ),
                   const SizedBox(height: 32),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialIconButton(
-                        onTap: () {},
-                        icon: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/google_icon.svg"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: SocialIconButton(
-                          onTap: () {},
-                          icon: SvgPicture.asset(
-                              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/apple_icon.svg"),
-                        ),
-                      ),
-                      SocialIconButton(
-                        onTap: () {},
-                        icon: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/facebook_icon.svg"),
-                      ),
-                    ],
-                  )
+                  const HorizontalSeparator(),
+                  const SizedBox(height: 32),
+                  const SocialMediaIcons()
                 ],
               );
             },
           ),
         ),
-      ),
-    );
-  }
-
-  Widget horizontalLine() => Flexible(
-        child: Container(
-          height: 1,
-          color: const Color(0xff323239),
-        ),
-      );
-}
-
-class SocialIconButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final Widget icon;
-
-  const SocialIconButton({
-    required this.onTap,
-    required this.icon,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: const BoxDecoration(
-          color: Color(0xff37373C),
-          shape: BoxShape.circle,
-        ),
-        child: Center(child: icon),
       ),
     );
   }

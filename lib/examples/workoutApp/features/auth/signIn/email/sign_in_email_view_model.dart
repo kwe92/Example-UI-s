@@ -8,7 +8,7 @@ class SignInEmailViewModel extends ChangeNotifier {
   String? get email => _email;
 
   void setEmail(String email) {
-    _email = email;
+    _email = email.trim();
     debugPrint("from $this.setEmail: $email");
     notifyListeners();
   }

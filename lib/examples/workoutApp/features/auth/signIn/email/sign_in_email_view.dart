@@ -1,8 +1,11 @@
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/email/sign_in_email_view_model.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view.dart';
+import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
+import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
+import 'package:example_ui/examples/workoutApp/features/auth/signUp/sign_up_view.dart';
+import 'package:example_ui/examples/workoutApp/features/services/string_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class SignInEmailView extends StatelessWidget {
@@ -51,29 +54,14 @@ class SignInEmailView extends StatelessWidget {
                     child: TextFormField(
                       controller: emailController,
                       onChanged: viewModel.setEmail,
-                      // TODO: set obscureText in view model
-                      // obscureText: true,
                       textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter email address",
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/password_visibility_icon.svg",
-                          ),
-                        ),
-                        suffixIconConstraints: const BoxConstraints(maxHeight: 48, maxWidth: 48),
                       ),
-                      // TODO: move validator to service
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Value can't be empty.";
-                        }
-                        return null;
-                      },
+                      validator: StringService.emailValidator,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
                   SizedBox(
                     width: double.maxFinite,
                     height: 56,
@@ -99,7 +87,12 @@ class SignInEmailView extends StatelessWidget {
                         style: TextStyle(color: Color(0xff81809E)),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => SignUpView(),
+                          ),
+                        ),
                         child: const Text(
                           "Create Account",
                           style: TextStyle(fontWeight: FontWeight.w600),
@@ -107,85 +100,15 @@ class SignInEmailView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
-                  Row(
-                    children: [
-                      horizontalLine(),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          "Or",
-                          style: TextStyle(
-                            color: Color(0xff81809E),
-                          ),
-                        ),
-                      ),
-                      horizontalLine()
-                    ],
-                  ),
                   const SizedBox(height: 32),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialIconButton(
-                        onTap: () {},
-                        icon: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/google_icon.svg"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: SocialIconButton(
-                          onTap: () {},
-                          icon: SvgPicture.asset(
-                              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/apple_icon.svg"),
-                        ),
-                      ),
-                      SocialIconButton(
-                        onTap: () {},
-                        icon: SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/examples/workoutApp/app/assets/facebook_icon.svg"),
-                      ),
-                    ],
-                  )
+                  const HorizontalSeparator(),
+                  const SizedBox(height: 32),
+                  const SocialMediaIcons(),
                 ],
               );
             },
           ),
         ),
-      ),
-    );
-  }
-
-  Widget horizontalLine() => Flexible(
-        child: Container(
-          height: 1,
-          color: const Color(0xff323239),
-        ),
-      );
-}
-
-class SocialIconButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final Widget icon;
-
-  const SocialIconButton({
-    required this.onTap,
-    required this.icon,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: const BoxDecoration(
-          color: Color(0xff37373C),
-          shape: BoxShape.circle,
-        ),
-        child: Center(child: icon),
       ),
     );
   }

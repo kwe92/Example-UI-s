@@ -62,6 +62,15 @@ class ToastService {
       },
     );
   }
+
+  void showSnackBar(String message, [Color? textColor]) => ScaffoldMessenger.of(WidgetKey.navigatorKey.currentState!.context).showSnackBar(
+        SnackBar(
+          content: Text(
+            message,
+            style: TextStyle(color: textColor),
+          ),
+        ),
+      );
 }
 
 // TODO: should be in its own module
