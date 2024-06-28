@@ -4,6 +4,8 @@ import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_
 import 'package:example_ui/examples/workoutApp/features/services/notification_service.dart';
 import 'package:flutter/material.dart';
 
+// TODO: add exercises place holder data for WorkoutProgress instances
+
 class DashboardViewModel extends ChangeNotifier {
   int _selectedCategory = 0;
 
@@ -21,28 +23,45 @@ class DashboardViewModel extends ChangeNotifier {
 
   List<WorkoutProgress> get workoutProgress => [
         WorkoutProgress(
-          workoutType: "Chest",
+          workoutType: "Chest Workout",
           minutesRemaining: 15,
           completed: 5,
           total: 12,
+          exercises: [
+            "Standard Push-Ups",
+            "Legs Crossed Push-Ups",
+            "Decline Push-Ups",
+            "Plyometric Push-Ups",
+            "Wide Push-Ups",
+            "Diamond Push-Ups",
+            "Shuffle Push-Ups",
+            "One-leg Push-Ups",
+            "Off-set Push-Ups",
+            "Spider-Man Push-Ups",
+            "Incline push-Ups",
+            "Archer push Ups",
+          ],
         ),
         WorkoutProgress(
-          workoutType: "Legs",
+          workoutType: "Legs Workout",
           minutesRemaining: 23,
           completed: 3,
           total: 20,
+          exercises: [],
         ),
         WorkoutProgress(
-          workoutType: "Back",
+          workoutType: "Back Workout",
           minutesRemaining: 8,
           completed: 10,
           total: 12,
+          exercises: [],
         ),
         WorkoutProgress(
-          workoutType: "Biceps",
+          workoutType: "Biceps Workout",
           minutesRemaining: 5,
           completed: 7,
           total: 8,
+          exercises: [],
         ),
       ];
 
