@@ -1,13 +1,17 @@
 import 'dart:convert';
 
+// TODO: going to need to be refactored
+
 class WorkoutProgress {
   final String workoutType;
+  final List<String> exercises;
   final int minutesRemaining;
   int completed;
   final int total;
 
   WorkoutProgress({
     required this.workoutType,
+    required this.exercises,
     required this.minutesRemaining,
     required this.completed,
     required this.total,
@@ -16,6 +20,7 @@ class WorkoutProgress {
   Map<String, dynamic> toMap() {
     return {
       'workoutType': workoutType,
+      'exercises': exercises,
       'minutesRemaining': minutesRemaining,
       'completed': completed,
       'total': total,
@@ -25,6 +30,7 @@ class WorkoutProgress {
   factory WorkoutProgress.fromMap(Map<String, dynamic> map) {
     return WorkoutProgress(
       workoutType: map['workoutType'] ?? '',
+      exercises: List<String>.from(map['exercises']),
       minutesRemaining: map['minutesRemaining']?.toInt() ?? 0,
       completed: map['completed']?.toInt() ?? 0,
       total: map['total']?.toInt() ?? 0,
@@ -37,6 +43,6 @@ class WorkoutProgress {
 
   @override
   String toString() {
-    return 'WorkoutProgress(workoutType: $workoutType, minutesRemaining: $minutesRemaining, completed: $completed, total: $total)';
+    return 'WorkoutProgress(workoutType: $workoutType, exercises: $exercises, minutesRemaining: $minutesRemaining, completed: $completed, total: $total)';
   }
 }
