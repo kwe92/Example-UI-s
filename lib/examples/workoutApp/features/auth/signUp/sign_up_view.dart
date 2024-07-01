@@ -1,4 +1,3 @@
-import 'package:example_ui/examples/workoutApp/features/auth/signIn/email/sign_in_email_view.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signUp/signUpSetPassword/set_password_view.dart';
