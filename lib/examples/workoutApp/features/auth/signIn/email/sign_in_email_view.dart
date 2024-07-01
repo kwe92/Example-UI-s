@@ -68,6 +68,8 @@ class SignInEmailView extends StatelessWidget {
                     child: CustomButton(
                       onTap: () {
                         if (formKey.currentState?.validate() ?? false) {
+                          viewModel.setTempUser();
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(

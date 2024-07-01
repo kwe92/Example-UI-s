@@ -2,22 +2,19 @@ import 'package:example_ui/examples/workoutApp/features/dashboard/model/exercise
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/notification.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_progress.dart';
 import 'package:example_ui/examples/workoutApp/features/services/notification_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/mixins/extended_change_notifier.dart';
 import 'package:flutter/material.dart';
 
 // TODO: add exercises place holder data for WorkoutProgress instances
 
-class DashboardViewModel extends ChangeNotifier {
+class DashboardViewModel extends ExtendedChangeNotifier {
   int _selectedCategory = 0;
 
   final _categories = ["All", "Warm Up", "Yoga", "Biceps", "Chest", "Legs"];
 
-  bool _isBusy = false;
-
   int get selectedCategory => _selectedCategory;
 
   List<String> get categories => _categories;
-
-  bool get isBusy => _isBusy;
 
   List<AppNotification> get notifications => notificationService.notifications;
 
@@ -110,11 +107,6 @@ class DashboardViewModel extends ChangeNotifier {
 
     debugPrint("$_selectedCategory");
 
-    notifyListeners();
-  }
-
-  void setBusy(bool isBusy) {
-    _isBusy = isBusy;
     notifyListeners();
   }
 

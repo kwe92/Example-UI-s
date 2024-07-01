@@ -19,8 +19,10 @@ void main() async {
     MaterialApp(
       navigatorKey: WidgetKey.navigatorKey,
       theme: WorkoutAppTheme.getTheme(),
-      home: NavigatorView(),
-      // home: SignInEmailView(),
+      // home: NavigatorView(),
+      home: SignInEmailView(),
+      // home: const DashboardView(),
+      // home: SignUpView(),
     ),
   );
 }
