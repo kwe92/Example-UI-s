@@ -117,12 +117,14 @@ class SetPasswordView extends StatelessWidget {
 
                                     await viewModel.createUser();
 
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const NavigatorView(),
-                                      ),
-                                    );
+                                    if (viewModel.successfulLogin) {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => const NavigatorView(),
+                                        ),
+                                      );
+                                    }
                                   }
                                 }
                               : () {},
