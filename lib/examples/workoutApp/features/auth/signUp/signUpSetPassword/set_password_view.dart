@@ -117,12 +117,14 @@ class SetPasswordView extends StatelessWidget {
 
                                     await viewModel.createUser();
 
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const NavigatorView(),
-                                      ),
-                                    );
+                                    if (viewModel.successfulLogin) {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => const NavigatorView(),
+                                        ),
+                                      );
+                                    }
                                   }
                                 }
                               : () {},
@@ -138,7 +140,8 @@ class SetPasswordView extends StatelessWidget {
                             style: TextStyle(color: Color(0xff81809E)),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => SignInEmailView())),
+                            onPressed: () async => await Navigator.pushAndRemoveUntil(
+                                context, MaterialPageRoute(builder: (_) => SignInEmailView()), (_) => false),
                             child: const Text(
                               "Sign In",
                               style: TextStyle(fontWeight: FontWeight.w600),

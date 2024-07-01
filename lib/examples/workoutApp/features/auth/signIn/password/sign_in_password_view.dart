@@ -1,6 +1,7 @@
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view_model.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
+import 'package:example_ui/examples/workoutApp/features/auth/signUp/sign_up_view.dart';
 import 'package:example_ui/examples/workoutApp/features/navigator/navigator_view.dart';
 import 'package:example_ui/examples/workoutApp/features/services/string_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
@@ -90,13 +91,17 @@ class SignInPasswordView extends StatelessWidget {
                               ? () async {
                                   if (formKey.currentState?.validate() ?? false) {
                                     viewModel.setTempUser();
+
                                     await viewModel.signInWithEmailAndPassword();
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const NavigatorView(),
-                                      ),
-                                    );
+
+                                    if (viewModel.successfulLogin) {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => const NavigatorView(),
+                                        ),
+                                      );
+                                    }
                                   }
                                 }
                               : () {},
@@ -111,7 +116,9 @@ class SignInPasswordView extends StatelessWidget {
                             style: TextStyle(color: Color(0xff81809E)),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpView()));
+                            },
                             child: const Text(
                               "Create Account",
                               style: TextStyle(fontWeight: FontWeight.w600),

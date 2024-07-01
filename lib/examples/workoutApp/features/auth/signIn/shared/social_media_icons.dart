@@ -2,6 +2,8 @@ import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/socia
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+// TODO: use firebase for social login
+
 class SocialMediaIcons extends StatelessWidget {
   const SocialMediaIcons({super.key});
 
