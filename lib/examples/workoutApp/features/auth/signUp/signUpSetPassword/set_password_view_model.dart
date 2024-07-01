@@ -1,4 +1,5 @@
 import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
+import 'package:example_ui/examples/workoutApp/features/services/toast_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/mixins/extended_change_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,8 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
 
   bool get isMatchingPassword => _password?.trim() == confirmedPassword?.trim();
 
+  bool get successfulLogin => _authServer.loggedIn;
+
   void setPassword(String password) {
     _password = password.trim();
     debugPrint("from $this.setPassword: $_password");
@@ -45,8 +48,24 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
   }
 
   Future<void> createUser() async {
-    setBusy(true);
-    await _authServer.createUserWithEmailAndPassword();
-    setBusy(false);
+    try {
+      setBusy(true);
+      await _authServer.createUserWithEmailAndPassword();
+      setBusy(false);
+
+      _authServer.setLoggedIn(true);
+    } catch (err, _) {
+      setBusy(false);
+
+      debugPrint("Error - SetPasswordViewModel: createUser: $err");
+
+      if (err.toString().toLowerCase().contains("in use")) {
+        toastService.showSnackBar("email in use.", Colors.red);
+      } else if (err.toString().toLowerCase().contains("network error")) {
+        toastService.showSnackBar("please check your network connection.", Colors.red);
+      } else {
+        toastService.showSnackBar("an error has occured please try again.", Colors.red);
+      }
+    }
   }
 }
