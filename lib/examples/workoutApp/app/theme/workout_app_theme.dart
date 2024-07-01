@@ -30,6 +30,8 @@ class WorkoutAppTheme {
       outlinedButtonTheme: mainButtonTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme,
       progressIndicatorTheme: const ProgressIndicatorThemeData(color: WorkoutAppColors.mainThemeColor),
+
+      snackBarTheme: const SnackBarThemeData(backgroundColor: Color.fromARGB(255, 52, 52, 52)),
     );
   }
 }
@@ -47,6 +49,15 @@ const inputDecorationTheme = InputDecorationTheme(
     borderSide: BorderSide(
       width: 2,
       color: WorkoutAppColors.mainThemeColor,
+    ),
+    borderRadius: BorderRadius.all(
+      Radius.circular(16),
+    ),
+  ),
+  errorBorder: OutlineInputBorder(
+    borderSide: BorderSide(
+      width: 2,
+      color: Colors.red,
     ),
     borderRadius: BorderRadius.all(
       Radius.circular(16),
