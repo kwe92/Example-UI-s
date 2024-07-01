@@ -91,13 +91,17 @@ class SignInPasswordView extends StatelessWidget {
                               ? () async {
                                   if (formKey.currentState?.validate() ?? false) {
                                     viewModel.setTempUser();
+
                                     await viewModel.signInWithEmailAndPassword();
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const NavigatorView(),
-                                      ),
-                                    );
+
+                                    if (viewModel.successfulLogin) {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => const NavigatorView(),
+                                        ),
+                                      );
+                                    }
                                   }
                                 }
                               : () {},
