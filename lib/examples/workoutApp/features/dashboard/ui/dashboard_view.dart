@@ -5,6 +5,7 @@ import 'package:example_ui/examples/workoutApp/features/dashboard/ui/widgets/hea
 import 'package:example_ui/examples/workoutApp/features/dashboard/ui/widgets/progress_card.dart';
 import 'package:example_ui/examples/workoutApp/features/services/toast_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/widgets/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -172,30 +173,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  if (viewModel.isBusy)
-                    // TODO: spinner should be its own widget
-                    Center(
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xff29292D),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(16),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: const Offset(0, 2),
-                              color: Colors.black.withOpacity(0.15),
-                              spreadRadius: 2,
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: const CircularProgressIndicator(),
-                      ),
-                    ),
+                  if (viewModel.isBusy) const LoadingSpinner()
                 ],
               );
             },
