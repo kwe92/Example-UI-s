@@ -89,7 +89,7 @@ class SignInEmailView extends StatelessWidget {
                         style: TextStyle(color: Color(0xff81809E)),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.pushReplacement(
+                        onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (_) => SignUpView(),

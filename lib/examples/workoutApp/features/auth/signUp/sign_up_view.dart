@@ -111,7 +111,7 @@ class SignUpView extends StatelessWidget {
                         style: TextStyle(color: Color(0xff81809E)),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => SignInEmailView())),
+                        onPressed: () => Navigator.pop(context),
                         child: const Text(
                           "Sign In",
                           style: TextStyle(fontWeight: FontWeight.w600),
