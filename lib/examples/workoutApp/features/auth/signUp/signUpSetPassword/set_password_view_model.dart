@@ -1,8 +1,14 @@
+import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/mixins/extended_change_notifier.dart';
 import 'package:flutter/material.dart';
 
 // TODO: use firebase for auth
 
-class SetPasswordViewModel extends ChangeNotifier {
+// TODO: set busy state handling | to be honest you should implement an extended change notifier class
+
+final AuthService _authServer = AuthService.instance();
+
+class SetPasswordViewModel extends ExtendedChangeNotifier {
   String? _password;
 
   String? _confirmedPassword;
@@ -32,5 +38,15 @@ class SetPasswordViewModel extends ChangeNotifier {
   void setObscure(bool obscure) {
     _isObscured = obscure;
     notifyListeners();
+  }
+
+  void setTempUser() {
+    _authServer.setTempUserPassword(password!);
+  }
+
+  Future<void> createUser() async {
+    setBusy(true);
+    await _authServer.createUserWithEmailAndPassword();
+    setBusy(false);
   }
 }
