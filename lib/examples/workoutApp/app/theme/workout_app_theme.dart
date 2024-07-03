@@ -1,23 +1,10 @@
 import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-// TODO: add snackbar styling
-
 class WorkoutAppTheme {
   WorkoutAppTheme._();
   static ThemeData getTheme() {
     return ThemeData(
-      // colorScheme: ColorScheme(
-      //   brightness: Brightness.dark,
-      //   primary: Colors.blue,
-      //   onPrimary: Colors.green,
-      //   secondary: Colors.red,
-      //   onSecondary: Colors.pink,
-      //   error: Colors.orange,
-      //   onError: Colors.yellow,
-      //   surface: Colors.lightBlue,
-      //   onSurface: Colors.lightGreen,
-      // ),
       colorScheme: const ColorScheme.dark(
         primary: WorkoutAppColors.mainThemeColor,
         onSurface: WorkoutAppColors.primaryTextColor,
@@ -28,7 +15,6 @@ class WorkoutAppTheme {
       outlinedButtonTheme: mainButtonTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme,
       progressIndicatorTheme: const ProgressIndicatorThemeData(color: WorkoutAppColors.mainThemeColor),
-
       snackBarTheme: const SnackBarThemeData(backgroundColor: Color.fromARGB(255, 52, 52, 52)),
     );
   }

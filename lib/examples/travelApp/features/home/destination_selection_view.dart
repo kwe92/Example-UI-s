@@ -105,7 +105,6 @@ class DestinationSelectionView extends StatelessWidget {
                       );
                     }),
               ),
-              // TODO: Make dynamic instead of static
               bottomNavigationBar: BottomNavigationBar(
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
