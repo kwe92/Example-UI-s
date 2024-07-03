@@ -1,8 +1,6 @@
 import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-// TODO: add error text field styling
-
 // TODO: add snackbar styling
 
 class WorkoutAppTheme {

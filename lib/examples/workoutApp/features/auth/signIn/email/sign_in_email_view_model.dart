@@ -1,8 +1,6 @@
 import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
-// TODO: use firebase for auth
-
 class SignInEmailViewModel extends ChangeNotifier {
   String? _email;
 
