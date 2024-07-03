@@ -1,5 +1,5 @@
 import 'package:example_ui/examples/travelApp/features/shared/model/destination.dart';
-import 'package:example_ui/examples/travelApp/features/shared/services/destination_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 class DestinationSelectionViewModel extends ChangeNotifier {

@@ -1,5 +1,5 @@
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_progress.dart';
-import 'package:example_ui/examples/workoutApp/features/services/toast_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/progress_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

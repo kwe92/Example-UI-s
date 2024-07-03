@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:example_ui/examples/travelApp/features/shared/model/destination.dart';
 import 'package:flutter/material.dart';
 
-final destinationService = DestinationService();
-
 const fakeBackendData =
     '''[{"name":"Andes Mountain","continent":"South, America","description":"The Andes, running along South America's western side, is among the world's longest mountain ranges. Its varied terrain encompasses glaciers, volcanoes, grassland, desert, lakes and forest. The mountains shelter pre-Columbian archaeological sites and wildlife including chinchillas and condors.","price":230,"temperature":16,"rating":4.5,"flightDuration":8,"image":"/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/travelApp/assets/andes-mountain.png"},
         {"name":"Mount Fuji","continent":"Tokyo, Japan","description":"Japan’s Mt. Fuji is an active volcano about 100 kilometers southwest of Tokyo. Commonly called “Fuji-san,” it’s the country’s tallest peak, at 3,776 meters. A pilgrimage site for centuries, it’s considered one of Japan’s 3 sacred mountains, and summit hikes remain a popular activity.","price":675,"temperature":23,"rating":4.7,"flightDuration":12,"image":"/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/travelApp/assets/mount-fuji-by-night.jpeg"},
@@ -14,6 +12,11 @@ const fakeBackendData =
         {"name":"Bridal Veil Falls","continent":"Oregon, United States","description":"Located just off the Columbia River Highway, at the site of an old lumber mill, this state park features two short hikes, one to beautiful Bridal Veil Falls and the other showcasing views of the Columbia River.The lower trail is a steep, 0.3-mile descent to the base of the magnificent waterfall. The falls duck under the Old Columbia River Gorge Highway's 1914 bridge and over mossy basalt in two tiers, a drop of about 120 feet altogether.","price":225,"temperature":21,"rating":4.8,"flightDuration":14,"image":"/Users/kwe/flutter-projects/Example-UI-FLutter/example_ui/lib/examples/travelApp/assets/oregon.jpeg"}]''';
 
 class DestinationService extends ChangeNotifier {
+  static final DestinationService _singleton = DestinationService._internal();
+
+  factory DestinationService() => _singleton;
+
+  DestinationService._internal();
   List<Destination> _destinations = [];
 
   List<Destination> get destinations => _destinations;
@@ -26,8 +29,6 @@ class DestinationService extends ChangeNotifier {
     final List<Map<String, dynamic>> data = List.from(resonse);
 
     _destinations = [for (Map<String, dynamic> json in data) Destination.fromMap(json)];
-
-    print(_destinations);
 
     return _destinations;
   }
