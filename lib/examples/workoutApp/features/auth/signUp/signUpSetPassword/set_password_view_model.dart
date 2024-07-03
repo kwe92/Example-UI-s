@@ -1,9 +1,6 @@
-import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
-import 'package:example_ui/examples/workoutApp/features/services/toast_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/mixins/extended_change_notifier.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
-
-final AuthService _authService = AuthService.instance();
 
 class SetPasswordViewModel extends ExtendedChangeNotifier {
   String? _password;
@@ -20,7 +17,7 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
 
   bool get isMatchingPassword => _password?.trim() == confirmedPassword?.trim();
 
-  bool get successfulLogin => _authService.loggedIn;
+  bool get successfulLogin => authService.loggedIn;
 
   void setPassword(String password) {
     _password = password.trim();
@@ -39,17 +36,15 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
     notifyListeners();
   }
 
-  void setTempUser() {
-    _authService.setTempUserPassword(password!);
-  }
+  void setTempUser() => authService.setTempUserPassword(password!);
 
   Future<void> createUser() async {
     try {
       setBusy(true);
-      await _authService.createUserWithEmailAndPassword();
+      await authService.createUserWithEmailAndPassword();
       setBusy(false);
 
-      _authService.setLoggedIn(true);
+      authService.setLoggedIn(true);
     } catch (err, _) {
       setBusy(false);
 

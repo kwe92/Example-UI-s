@@ -3,7 +3,7 @@ import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horiz
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signUp/sign_up_view.dart';
 import 'package:example_ui/examples/workoutApp/features/navigator/navigator_view.dart';
-import 'package:example_ui/examples/workoutApp/features/services/string_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/services/string_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/loading_spinner.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/visibility_widget.dart';

@@ -11,7 +11,7 @@ class DestinationSelectionViewModel extends ChangeNotifier {
 
   bool get showBottomNav => _showBottomNav;
 
-  List<Destination> get destinations => destinationService.destinations;
+  List<Destination> get destinations => DestinationService().destinations;
 
   void setIndex(int index) {
     _selectedIndex = index;
@@ -23,5 +23,5 @@ class DestinationSelectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Destination>> getData() async => await destinationService.fetchData();
+  Future<List<Destination>> getData() async => await DestinationService().fetchData();
 }

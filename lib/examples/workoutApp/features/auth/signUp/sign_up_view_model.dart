@@ -1,4 +1,4 @@
-import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 class SignUpViewModel extends ChangeNotifier {
@@ -12,19 +12,17 @@ class SignUpViewModel extends ChangeNotifier {
 
   void setEmail(String email) {
     _email = email.trim();
-    debugPrint("from $this.setEmail: $_email");
+    debugPrint("signup - email: $_email");
     notifyListeners();
   }
 
   void setName(String name) {
     _name = name.trim();
-    debugPrint("from $this.setName: $_name");
+    debugPrint("signup - username: $_name");
     notifyListeners();
   }
 
   void setTempUser() {
-    var authService = AuthService.instance();
-
     authService.setTempUserEmail(email!);
 
     authService.setTempUserName(name!);

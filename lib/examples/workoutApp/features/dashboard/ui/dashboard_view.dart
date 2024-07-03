@@ -3,7 +3,7 @@ import 'package:example_ui/examples/workoutApp/features/dashboard/ui/dashboard_v
 import 'package:example_ui/examples/workoutApp/features/dashboard/ui/widgets/exercise_list_tile.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/ui/widgets/header_text_button.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/ui/widgets/progress_card.dart';
-import 'package:example_ui/examples/workoutApp/features/services/toast_service.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/loading_spinner.dart';
 import 'package:flutter/material.dart';

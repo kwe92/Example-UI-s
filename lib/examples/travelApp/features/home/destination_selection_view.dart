@@ -16,7 +16,7 @@ class DestinationSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: FutureBuilder(
-        future: destinationService.fetchData(),
+        future: DestinationService().fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashView();
@@ -105,7 +105,6 @@ class DestinationSelectionView extends StatelessWidget {
                       );
                     }),
               ),
-              // TODO: Make dynamic instead of static
               bottomNavigationBar: BottomNavigationBar(
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(

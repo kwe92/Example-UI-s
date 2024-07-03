@@ -1,5 +1,3 @@
-// TODO: ensure you can use relative path instead of absolute path for images
-
 import 'package:example_ui/examples/travelApp/features/locationDescription/ui/location_description_view.dart';
 import 'package:example_ui/examples/travelApp/features/locationDetails/ui/widgets/custom_button.dart';
 import 'package:example_ui/examples/travelApp/features/locationDetails/ui/widgets/detail_icons.dart';
@@ -112,7 +110,6 @@ class LocationDetailView extends StatelessWidget {
                 rating: destination.rating,
               ),
               const SizedBox(height: 18),
-              // TODO: ShaderMask Review
               ShaderMask(
                 blendMode: BlendMode.srcIn,
                 shaderCallback: (bounds) => const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [

@@ -4,15 +4,14 @@ import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/custom_button.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/progress_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
-// TODO: user getit or a singleton pattern instead of passing around a global variable
-
-final toastService = ToastService();
-
 class ToastService {
-  // TODO: should be refactored to be polymorphic and should parse out the notification modal
+  static final ToastService _singleton = ToastService._internal();
+
+  factory ToastService() => _singleton;
+
+  ToastService._internal();
   Future<T?> notificationsModal<T>({required List<AppNotification> notifications, Color barrierColor = Colors.transparent}) {
     return showDialog<T>(
       barrierColor: barrierColor,
@@ -29,7 +28,7 @@ class ToastService {
             height: 326,
             padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
-              color: Color(0xff29292D), // TODO: check if color is used anywhere else
+              color: Color(0xff29292D),
               borderRadius: BorderRadius.all(
                 Radius.circular(16),
               ),
@@ -75,8 +74,6 @@ class ToastService {
           ),
         ),
       );
-
-// TODO: refactor as it will be shared with Categories
 
   void continueExerciseBottomModal(WorkoutProgress workoutProgress) => showModalBottomSheet(
         context: WidgetKey.navigatorKey.currentState!.context,
@@ -135,7 +132,6 @@ class ToastService {
                   ],
                 ),
                 const SizedBox(height: 24),
-                // TODO: figureout how to track remaining exercises instead of listing all exercises
                 const Text(
                   "Exercises",
                   style: TextStyle(
@@ -147,30 +143,39 @@ class ToastService {
                 SizedBox(
                   width: double.maxFinite,
                   height: 126,
-                  child: ListView.separated(
-                    itemCount: workoutProgress.exercises.length,
-                    itemBuilder: (context, i) {
-                      return Row(
-                        children: [
-                          Container(
-                            width: 4,
-                            height: 4,
-                            decoration: const BoxDecoration(
-                              color: Color(0xff81809E),
-                              shape: BoxShape.circle,
+                  child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) => const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
+                      Colors.white,
+                      Colors.black54,
+                    ]).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height * 1.25),
+                    ),
+                    child: ListView.separated(
+                      itemCount: workoutProgress.exercises.length,
+                      itemBuilder: (context, i) {
+                        return Row(
+                          children: [
+                            Container(
+                              width: 4,
+                              height: 4,
+                              decoration: const BoxDecoration(
+                                color: Color(0xff81809E),
+                                shape: BoxShape.circle,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            workoutProgress.exercises[i],
-                            style: const TextStyle(
-                              color: Color(0xff81809E),
+                            const SizedBox(width: 6),
+                            Text(
+                              workoutProgress.exercises[i],
+                              style: const TextStyle(
+                                color: Color(0xff81809E),
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, index) => const SizedBox(height: 4),
+                          ],
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(height: 4),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -184,8 +189,6 @@ class ToastService {
         },
       );
 }
-
-// TODO: should be in its own module
 
 class NotificationListTile extends StatelessWidget {
   final AppNotification notification;

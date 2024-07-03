@@ -1,13 +1,18 @@
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/notification.dart';
 import 'package:flutter/material.dart';
-// TODO: use getit or a singleton pattern instead of passing around a global variable
 
-final NotificationService notificationService = NotificationService();
+// final NotificationService notificationService = NotificationService();
 
 class NotificationService extends ChangeNotifier {
   List<AppNotification> _notifications = [];
 
   List<AppNotification> get notifications => _notifications;
+
+  static final NotificationService _singleton = NotificationService._internal();
+
+  NotificationService._internal();
+
+  factory NotificationService() => _singleton;
 
   Future<void> getNotifications() async {
     await Future.delayed(
