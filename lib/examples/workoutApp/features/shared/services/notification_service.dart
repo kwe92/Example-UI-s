@@ -1,8 +1,6 @@
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/notification.dart';
 import 'package:flutter/material.dart';
 
-// final NotificationService notificationService = NotificationService();
-
 class NotificationService extends ChangeNotifier {
   List<AppNotification> _notifications = [];
 

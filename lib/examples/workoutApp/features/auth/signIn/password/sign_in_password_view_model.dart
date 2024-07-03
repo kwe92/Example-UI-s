@@ -1,4 +1,4 @@
-import 'package:example_ui/examples/workoutApp/features/shared/mixins/extended_change_notifier.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/utility/extended_change_notifier.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 

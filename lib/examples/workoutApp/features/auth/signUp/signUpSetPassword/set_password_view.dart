@@ -105,7 +105,7 @@ class SetPasswordView extends StatelessWidget {
                         width: double.maxFinite,
                         height: 56,
                         child: CustomButton(
-                          color: !viewModel.isBusy ? null : const Color(0xff888888),
+                          backgroundColor: !viewModel.isBusy ? null : const Color(0xff888888),
                           onTap: !viewModel.isBusy
                               ? () async {
                                   if (formKey.currentState?.validate() ?? false) {

@@ -7,14 +7,14 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double height;
   final OutlinedButtonThemeData? buttonTheme;
-  final Color? color;
+  final Color? backgroundColor;
   const CustomButton({
     required this.onTap,
     required this.label,
     this.width = double.maxFinite,
     this.height = 56,
     this.buttonTheme,
-    this.color,
+    this.backgroundColor,
     super.key,
   });
 
@@ -25,11 +25,11 @@ class CustomButton extends StatelessWidget {
       height: height,
       child: OutlinedButton(
         onPressed: onTap,
-        style: color == null
+        style: backgroundColor == null
             ? buttonTheme != null
                 ? buttonTheme?.style
                 : mainButtonTheme.style!
-            : mainButtonTheme.style!.copyWith(backgroundColor: resolver(color)),
+            : mainButtonTheme.style!.copyWith(backgroundColor: resolver(backgroundColor)),
         child: Text(
           label,
         ),
