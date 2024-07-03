@@ -1,8 +1,6 @@
 import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
-// TODO: use firebase for auth
-
 class SignUpViewModel extends ChangeNotifier {
   String? _email;
 
@@ -25,10 +23,10 @@ class SignUpViewModel extends ChangeNotifier {
   }
 
   void setTempUser() {
-    var authServer = AuthService.instance();
+    var authService = AuthService.instance();
 
-    authServer.setTempUserEmail(email!);
+    authService.setTempUserEmail(email!);
 
-    authServer.setTempUserName(name!);
+    authService.setTempUserName(name!);
   }
 }

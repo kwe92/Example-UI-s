@@ -6,6 +6,7 @@ import 'package:example_ui/examples/travelApp/features/locationDetails/ui/widget
 import 'package:example_ui/examples/travelApp/features/locationDetails/ui/widgets/info_list_tile.dart';
 import 'package:example_ui/examples/travelApp/features/shared/model/destination.dart';
 import 'package:example_ui/examples/travelApp/features/shared/widgets/circular_icon_button.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/utility/parse_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -75,7 +76,7 @@ class LocationDetailView extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                       child: InfoListTile(
                         destination: destination.name,
-                        continent: parseString(destination.continent),
+                        continent: parseLocation(destination.continent, 8),
                         price: destination.price,
                       ),
                     ),
@@ -147,14 +148,4 @@ class LocationDetailView extends StatelessWidget {
       ),
     );
   }
-}
-
-// TODO: colud refactor to keep D.R.Y
-String parseString(String location) {
-  final locationInfo = location.split(",");
-  if (locationInfo[0].length > 8) {
-    return locationInfo.last;
-  }
-
-  return location;
 }

@@ -1,6 +1,7 @@
 import 'package:example_ui/examples/travelApp/features/locationDetails/ui/location_detail_view.dart';
 import 'package:example_ui/examples/travelApp/features/shared/model/destination.dart';
 import 'package:example_ui/examples/travelApp/features/shared/widgets/circular_icon_button.dart';
+import 'package:example_ui/examples/workoutApp/features/shared/utility/parse_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -100,7 +101,7 @@ class DestinationInfoListTile extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    parseString(destination.continent),
+                    parseLocation(destination.continent, 5),
                     style: const TextStyle(
                       color: Color(0xffCAC8C8),
                     ),
@@ -131,13 +132,4 @@ class DestinationInfoListTile extends StatelessWidget {
       ),
     );
   }
-}
-
-String parseString(String location) {
-  final locationInfo = location.split(",");
-  if (locationInfo[0].length > 5) {
-    return locationInfo.last;
-  }
-
-  return location;
 }

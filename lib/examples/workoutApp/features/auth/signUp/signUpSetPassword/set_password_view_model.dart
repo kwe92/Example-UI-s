@@ -3,11 +3,7 @@ import 'package:example_ui/examples/workoutApp/features/services/toast_service.d
 import 'package:example_ui/examples/workoutApp/features/shared/mixins/extended_change_notifier.dart';
 import 'package:flutter/material.dart';
 
-// TODO: use firebase for auth
-
-// TODO: set busy state handling | to be honest you should implement an extended change notifier class
-
-final AuthService _authServer = AuthService.instance();
+final AuthService _authService = AuthService.instance();
 
 class SetPasswordViewModel extends ExtendedChangeNotifier {
   String? _password;
@@ -24,7 +20,7 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
 
   bool get isMatchingPassword => _password?.trim() == confirmedPassword?.trim();
 
-  bool get successfulLogin => _authServer.loggedIn;
+  bool get successfulLogin => _authService.loggedIn;
 
   void setPassword(String password) {
     _password = password.trim();
@@ -44,16 +40,16 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
   }
 
   void setTempUser() {
-    _authServer.setTempUserPassword(password!);
+    _authService.setTempUserPassword(password!);
   }
 
   Future<void> createUser() async {
     try {
       setBusy(true);
-      await _authServer.createUserWithEmailAndPassword();
+      await _authService.createUserWithEmailAndPassword();
       setBusy(false);
 
-      _authServer.setLoggedIn(true);
+      _authService.setLoggedIn(true);
     } catch (err, _) {
       setBusy(false);
 

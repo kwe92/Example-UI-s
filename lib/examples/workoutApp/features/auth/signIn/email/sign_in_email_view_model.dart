@@ -13,8 +13,8 @@ class SignInEmailViewModel extends ChangeNotifier {
   }
 
   void setTempUser() {
-    var authServer = AuthService.instance();
+    var authService = AuthService.instance();
 
-    authServer.setTempUserEmail(email!);
+    authService.setTempUserEmail(email!);
   }
 }

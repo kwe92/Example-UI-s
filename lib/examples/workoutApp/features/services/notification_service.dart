@@ -1,6 +1,6 @@
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/notification.dart';
 import 'package:flutter/material.dart';
-// TODO: user getit or a singleton pattern instead of passing around a global variable
+// TODO: use getit or a singleton pattern instead of passing around a global variable
 
 final NotificationService notificationService = NotificationService();
 
