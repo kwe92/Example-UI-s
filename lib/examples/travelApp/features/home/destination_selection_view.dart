@@ -3,8 +3,8 @@ import 'package:example_ui/examples/travelApp/features/home/widgets/custom_searc
 import 'package:example_ui/examples/travelApp/features/home/widgets/destination_card.dart';
 import 'package:example_ui/examples/travelApp/features/home/widgets/menu_button.dart';
 import 'package:example_ui/examples/travelApp/features/home/widgets/welcome_user_list_tile.dart';
+import 'package:example_ui/examples/travelApp/features/shared/services/destination_service.dart';
 import 'package:example_ui/examples/travelApp/features/splashScreen/ui/splash_view.dart';
-import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +16,7 @@ class DestinationSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: FutureBuilder(
-        future: destinationService.fetchData(),
+        future: DestinationService().fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashView();

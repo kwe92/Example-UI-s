@@ -1,5 +1,5 @@
 import 'package:example_ui/examples/travelApp/features/shared/model/destination.dart';
-import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
+import 'package:example_ui/examples/travelApp/features/shared/services/destination_service.dart';
 import 'package:flutter/material.dart';
 
 class DestinationSelectionViewModel extends ChangeNotifier {
@@ -11,7 +11,7 @@ class DestinationSelectionViewModel extends ChangeNotifier {
 
   bool get showBottomNav => _showBottomNav;
 
-  List<Destination> get destinations => destinationService.destinations;
+  List<Destination> get destinations => DestinationService().destinations;
 
   void setIndex(int index) {
     _selectedIndex = index;
@@ -23,5 +23,5 @@ class DestinationSelectionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Destination>> getData() async => await destinationService.fetchData();
+  Future<List<Destination>> getData() async => await DestinationService().fetchData();
 }

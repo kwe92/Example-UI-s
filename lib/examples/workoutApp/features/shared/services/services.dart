@@ -1,4 +1,3 @@
-import 'package:example_ui/examples/travelApp/features/shared/services/destination_service.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/services/auth_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/services/firebase_service.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/services/notification_service.dart';
@@ -11,5 +10,3 @@ AuthService get authService => AuthService();
 ToastService get toastService => ToastService();
 
 FirebaseService get firebaseService => FirebaseService();
-
-DestinationService get destinationService => DestinationService();
