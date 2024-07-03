@@ -146,10 +146,10 @@ class ToastService {
                   child: ShaderMask(
                     blendMode: BlendMode.srcIn,
                     shaderCallback: (bounds) => const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-                      Colors.white,
+                      Color(0xff81809E),
                       Colors.black54,
                     ]).createShader(
-                      Rect.fromLTWH(0, 0, bounds.width, bounds.height * 1.25),
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height * 1.75),
                     ),
                     child: ListView.separated(
                       itemCount: workoutProgress.exercises.length,
@@ -167,9 +167,6 @@ class ToastService {
                             const SizedBox(width: 6),
                             Text(
                               workoutProgress.exercises[i],
-                              style: const TextStyle(
-                                color: Color(0xff81809E),
-                              ),
                             ),
                           ],
                         );
