@@ -15,7 +15,13 @@ class WorkoutAppTheme {
       outlinedButtonTheme: mainButtonTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme,
       progressIndicatorTheme: const ProgressIndicatorThemeData(color: WorkoutAppColors.mainThemeColor),
-      snackBarTheme: const SnackBarThemeData(backgroundColor: Color.fromARGB(255, 52, 52, 52)),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: Color.fromARGB(255, 52, 52, 52),
+        contentTextStyle: TextStyle(
+          color: WorkoutAppColors.primaryTextColor,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }

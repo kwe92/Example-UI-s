@@ -48,4 +48,32 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
       }
     }
   }
+
+  Future<void> resetpassword() async {
+    final bool userRequestedPasswordReset = await toastService.forgotPasswordModal();
+
+    await sendResetPasswordEmail(userRequestedPasswordReset);
+  }
+
+  Future<void> sendResetPasswordEmail(bool userRequestedPasswordReset) async {
+    try {
+      if (userRequestedPasswordReset) {
+        setBusy(true);
+        await authService.resetpassword();
+        setBusy(false);
+        toastService.showSnackBar("password reset email sent to: ${authService.tempUser.email}");
+      }
+    } catch (err, _) {
+      setBusy(false);
+      debugPrint("Error - sendResetPasswordEmail: ${err.toString()}");
+      final parsedError = err.toString().toLowerCase().split("]").last;
+
+      if (parsedError.contains("network error")) {
+        toastService.showSnackBar(parsedError, Colors.red);
+        return;
+      }
+
+      toastService.showSnackBar(err.toString().toLowerCase(), Colors.red);
+    }
+  }
 }
