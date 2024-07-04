@@ -74,7 +74,7 @@ class SignInPasswordView extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () async => await viewModel.resetpassword(),
                           child: const Text(
                             "Forgot password?",
                             style: TextStyle(fontWeight: FontWeight.w600),
