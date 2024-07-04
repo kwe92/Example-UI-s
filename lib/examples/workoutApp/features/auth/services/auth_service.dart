@@ -79,6 +79,10 @@ class AuthService extends ChangeNotifier {
     await _firebaseUser?.delete();
   }
 
+  Future<void> resetpassword() async {
+    await firebaseService.authInstance.sendPasswordResetEmail(email: _tempUser.email!);
+  }
+
   void resetResources() {
     _tempUser = UserModel(id: "", fullName: "", email: "", password: "");
     notifyListeners();
