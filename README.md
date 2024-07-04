@@ -15,6 +15,8 @@ A Flutter project containing various UI examples.
 
 <img width="414" alt="Screenshot 2024-07-01 at 11 52 38 AM" src="https://github.com/kwe92/UI-Examples/assets/47009536/a51e4edd-aee6-46c3-9f38-1b6932a3002c">
 
+<img width="456" alt="Screenshot 2024-07-04 at 3 01 46 PM" src="https://github.com/kwe92/UI-Examples/assets/47009536/03057812-0b05-4924-b578-e8537cadf520">
+
 <img width="422" alt="Screenshot 2024-07-01 at 11 42 48 AM" src="https://github.com/kwe92/UI-Examples/assets/47009536/74645aeb-27d5-431c-a10c-953d3c22d962">
 
 <img width="431" alt="Screenshot 2024-07-01 at 11 44 41 AM" src="https://github.com/kwe92/UI-Examples/assets/47009536/0f0ed15e-14ab-470e-a481-94d4bb14e84a">
