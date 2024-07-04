@@ -19,6 +19,7 @@ class WorkoutAppTheme {
         backgroundColor: Color.fromARGB(255, 52, 52, 52),
         contentTextStyle: TextStyle(
           color: WorkoutAppColors.primaryTextColor,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
