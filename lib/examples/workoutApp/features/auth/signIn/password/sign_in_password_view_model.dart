@@ -48,4 +48,16 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
       }
     }
   }
+
+  Future<void> resetpassword() async {
+    final sendResetpasswordEmail = await toastService.forgotPasswordModal();
+
+    // TODO: add try catch
+    if (sendResetpasswordEmail) {
+      setBusy(true);
+      await authService.resetpassword();
+      setBusy(false);
+      toastService.showSnackBar("password reset email sent to: ${authService.tempUser.email}");
+    }
+  }
 }
