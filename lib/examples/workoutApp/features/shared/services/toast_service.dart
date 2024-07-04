@@ -209,7 +209,7 @@ class ToastService {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      "Are you sre you want to reset your password?",
+                      "Are you sure you want to reset your password?",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                     ),
@@ -222,16 +222,16 @@ class ToastService {
                       children: [
                         Flexible(
                           child: CustomButton(
-                            buttonTheme: secondaryButtonTheme,
                             onTap: () => Navigator.pop(context, true),
-                            label: 'Yes',
+                            label: "Yes",
                           ),
                         ),
                         const SizedBox(width: 12),
                         Flexible(
                           child: CustomButton(
+                            buttonTheme: secondaryButtonTheme,
                             onTap: () => Navigator.pop(context, false),
-                            label: 'No',
+                            label: "No",
                           ),
                         ),
                       ],
