@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class VisibilityWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class VisibilityWidget extends StatelessWidget {
     required this.isObscured,
     this.padding = const EdgeInsets.only(right: 16.0),
     this.size = 24,
-    this.color = const Color(0xff81809E),
+    this.color = WorkoutAppColors.grey0,
     super.key,
   });
 

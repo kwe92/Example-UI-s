@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/password/sign_in_password_view_model.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
@@ -86,7 +87,7 @@ class SignInPasswordView extends StatelessWidget {
                         width: double.maxFinite,
                         height: 56,
                         child: CustomButton(
-                          backgroundColor: !viewModel.isBusy ? null : const Color(0xff888888),
+                          backgroundColor: !viewModel.isBusy ? null : WorkoutAppColors.grey1,
                           onTap: !viewModel.isBusy
                               ? () async {
                                   if (formKey.currentState?.validate() ?? false) {
@@ -113,7 +114,7 @@ class SignInPasswordView extends StatelessWidget {
                         children: [
                           const Text(
                             "Don't have an account?",
-                            style: TextStyle(color: Color(0xff81809E)),
+                            style: TextStyle(color: WorkoutAppColors.grey0),
                           ),
                           TextButton(
                             onPressed: () {

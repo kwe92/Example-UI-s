@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/exercise_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +21,7 @@ class ExerciseListTile extends StatelessWidget {
         right: 26,
       ),
       decoration: const BoxDecoration(
-        color: Color(0xff202023), //TODO: check if the color 202023 is used elsewhere
+        color: WorkoutAppColors.grey3,
         borderRadius: BorderRadius.all(
           Radius.circular(12),
         ),
@@ -47,7 +48,7 @@ class ExerciseListTile extends StatelessWidget {
                       Text(
                         "${category.exerciseCount} Exercises",
                         style: const TextStyle(
-                          color: Color(0xff81809E),
+                          color: WorkoutAppColors.grey0,
                         ),
                       ),
                       Padding(
@@ -59,7 +60,7 @@ class ExerciseListTile extends StatelessWidget {
                       Text(
                         "${category.totalMinutes} Min",
                         style: const TextStyle(
-                          color: Color(0xff81809E),
+                          color: WorkoutAppColors.grey0,
                         ),
                       ),
                     ],

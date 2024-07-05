@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signUp/signUpSetPassword/set_password_view.dart';
@@ -107,7 +108,7 @@ class SignUpView extends StatelessWidget {
                     children: [
                       const Text(
                         "Already have an account?",
-                        style: TextStyle(color: Color(0xff81809E)),
+                        style: TextStyle(color: WorkoutAppColors.grey0),
                       ),
                       TextButton(
                         onPressed: () => Navigator.pop(context),

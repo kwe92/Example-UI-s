@@ -18,7 +18,7 @@ class SocialIconButton extends StatelessWidget {
         width: 56,
         height: 56,
         decoration: const BoxDecoration(
-          color: Color(0xff37373C),
+          color: Color(0xff37373C), // one off
           shape: BoxShape.circle,
         ),
         child: Center(child: icon),

@@ -58,8 +58,8 @@ class DashboardView extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Color(0xff9747FF),
-                              Color(0xff6F00FF),
+                              Color(0xff9747FF), // one off
+                              Color(0xff6F00FF), // one off
                             ],
                           ),
                           borderRadius: BorderRadius.all(
