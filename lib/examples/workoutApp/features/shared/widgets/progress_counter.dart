@@ -26,7 +26,7 @@ class ProgressCounter extends StatelessWidget {
                 child: CircularProgressIndicator(
                   value: workoutProgress.completed / workoutProgress.total,
                   strokeWidth: 5,
-                  backgroundColor: const Color(0xff303134),
+                  backgroundColor: const Color(0xff303134), // one off
                   strokeCap: StrokeCap.round,
                 ),
               ),

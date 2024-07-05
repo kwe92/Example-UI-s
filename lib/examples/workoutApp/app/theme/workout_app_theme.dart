@@ -28,7 +28,7 @@ class WorkoutAppTheme {
 
 const inputDecorationTheme = InputDecorationTheme(
   filled: true,
-  fillColor: Color(0xff202023),
+  fillColor: WorkoutAppColors.grey3,
   border: OutlineInputBorder(
     borderSide: BorderSide.none,
     borderRadius: BorderRadius.all(
@@ -134,7 +134,7 @@ final deactiveCategoryButtonStyle = mainButtonStyle.copyWith(
   side: resolver(
     const BorderSide(
       width: 2,
-      color: Color(0xff272641),
+      color: Color(0xff272641), // one off
     ),
   ),
   shape: resolver(
@@ -145,7 +145,7 @@ final deactiveCategoryButtonStyle = mainButtonStyle.copyWith(
   ),
   textStyle: resolver(
     TextStyle(
-      foreground: Paint()..color = const Color(0xff9B9BC2),
+      foreground: Paint()..color = const Color(0xff9B9BC2), // one off
       fontSize: 14,
       fontWeight: FontWeight.w500,
     ),

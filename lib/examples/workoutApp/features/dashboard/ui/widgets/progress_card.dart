@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_progress.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/services/services.dart';
 import 'package:example_ui/examples/workoutApp/features/shared/widgets/progress_counter.dart';
@@ -22,7 +23,7 @@ class ProgressCard extends StatelessWidget {
             width: 144,
             height: 152,
             decoration: const BoxDecoration(
-              color: Color(0xff202023),
+              color: WorkoutAppColors.grey3,
               borderRadius: BorderRadius.all(
                 Radius.circular(16),
               ),
@@ -42,7 +43,7 @@ class ProgressCard extends StatelessWidget {
                   "${workoutProgress.minutesRemaining} mins remaining",
                   style: const TextStyle(
                     fontSize: 12,
-                    color: Color(0xff81809E),
+                    color: WorkoutAppColors.grey0,
                   ),
                 ),
               ],

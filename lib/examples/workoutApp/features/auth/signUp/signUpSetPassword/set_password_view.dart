@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/email/sign_in_email_view.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/horizontal_separator.dart';
 import 'package:example_ui/examples/workoutApp/features/auth/signIn/shared/social_media_icons.dart';
@@ -105,7 +106,7 @@ class SetPasswordView extends StatelessWidget {
                         width: double.maxFinite,
                         height: 56,
                         child: CustomButton(
-                          backgroundColor: !viewModel.isBusy ? null : const Color(0xff888888),
+                          backgroundColor: !viewModel.isBusy ? null : WorkoutAppColors.grey1,
                           onTap: !viewModel.isBusy
                               ? () async {
                                   if (formKey.currentState?.validate() ?? false) {
@@ -137,7 +138,7 @@ class SetPasswordView extends StatelessWidget {
                         children: [
                           const Text(
                             "Already have an account?",
-                            style: TextStyle(color: Color(0xff81809E)),
+                            style: TextStyle(color: WorkoutAppColors.grey0),
                           ),
                           TextButton(
                             onPressed: () async => await Navigator.pushAndRemoveUntil(

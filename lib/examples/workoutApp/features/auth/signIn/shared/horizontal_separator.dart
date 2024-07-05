@@ -1,3 +1,4 @@
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalSeparator extends StatelessWidget {
@@ -13,7 +14,7 @@ class HorizontalSeparator extends StatelessWidget {
           child: Text(
             "Or",
             style: TextStyle(
-              color: Color(0xff81809E),
+              color: WorkoutAppColors.grey0,
             ),
           ),
         ),
@@ -26,6 +27,6 @@ class HorizontalSeparator extends StatelessWidget {
 Widget horizontalLine() => Flexible(
       child: Container(
         height: 1,
-        color: const Color(0xff323239),
+        color: WorkoutAppColors.grey2,
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:example_ui/examples/workoutApp/app/constants/constants.dart';
+import 'package:example_ui/examples/workoutApp/app/theme/colors.dart';
 import 'package:example_ui/examples/workoutApp/app/theme/workout_app_theme.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/notification.dart';
 import 'package:example_ui/examples/workoutApp/features/dashboard/model/workout_progress.dart';
@@ -87,7 +88,7 @@ class ToastService {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             width: double.maxFinite,
             decoration: const BoxDecoration(
-                color: Color(0xff202023),
+                color: WorkoutAppColors.grey3,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(32),
                   topRight: Radius.circular(32),
@@ -103,7 +104,7 @@ class ToastService {
                     width: 64,
                     height: 4,
                     decoration: const BoxDecoration(
-                      color: Color(0xffF1F2F6),
+                      color: Color(0xffF1F2F6), // one off
                       borderRadius: BorderRadius.all(
                         Radius.circular(64 / 2),
                       ),
@@ -129,7 +130,7 @@ class ToastService {
                         Text(
                           "${workoutProgress.minutesRemaining.toString()} min remaining",
                           style: const TextStyle(
-                            color: Color(0xff81809E),
+                            color: WorkoutAppColors.grey0,
                           ),
                         ),
                       ],
@@ -151,7 +152,7 @@ class ToastService {
                   child: ShaderMask(
                     blendMode: BlendMode.srcIn,
                     shaderCallback: (bounds) => const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-                      Color(0xff81809E),
+                      WorkoutAppColors.grey0,
                       Colors.black54,
                     ]).createShader(
                       Rect.fromLTWH(0, 0, bounds.width, bounds.height * 1.75),
@@ -165,7 +166,7 @@ class ToastService {
                               width: 4,
                               height: 4,
                               decoration: const BoxDecoration(
-                                color: Color(0xff81809E),
+                                color: WorkoutAppColors.grey0,
                                 shape: BoxShape.circle,
                               ),
                             ),
@@ -201,7 +202,7 @@ class ToastService {
                 width: double.maxFinite,
                 height: 250,
                 decoration: const BoxDecoration(
-                  color: Color(0xff202023),
+                  color: WorkoutAppColors.grey3,
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Column(
@@ -293,7 +294,7 @@ class Line extends StatelessWidget {
   const Line({
     this.isVertical = false,
     this.thickness = 1,
-    this.color = const Color(0xff323239),
+    this.color = WorkoutAppColors.grey2,
     super.key,
   });
 
