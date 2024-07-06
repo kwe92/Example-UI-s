@@ -1,7 +1,3 @@
-# example_ui
-
-A Flutter project containing various UI examples.
-
 ## Workout App
 
 - State Management: Provider Package
