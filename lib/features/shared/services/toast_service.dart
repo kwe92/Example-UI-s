@@ -52,7 +52,7 @@ class ToastService {
                       ),
                     ),
                     SvgPicture.asset(
-                      "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/check_icon.svg",
+                      "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/check_icon.svg",
                     ),
                   ],
                 ),
@@ -265,7 +265,7 @@ class NotificationListTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SvgPicture.asset(
-              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/clock_icon.svg",
+              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/clock_icon.svg",
             ),
             const SizedBox(width: 8),
             SizedBox(

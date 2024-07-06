@@ -54,7 +54,7 @@ class ExerciseListTile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         child: SvgPicture.asset(
-                          "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/dot_icon.svg",
+                          "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/dot_icon.svg",
                         ),
                       ),
                       Text(
@@ -70,7 +70,7 @@ class ExerciseListTile extends StatelessWidget {
             ],
           ),
           SvgPicture.asset(
-            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/arrow_right_icon.svg",
+            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/arrow_right_icon.svg",
           ),
         ],
       ),

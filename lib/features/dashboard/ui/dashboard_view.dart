@@ -34,7 +34,7 @@ class DashboardView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SvgPicture.asset(
-                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/banner_icon.svg",
+                            "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/banner_icon.svg",
                           ),
                           GestureDetector(
                             onTap: !viewModel.isBusy
@@ -44,7 +44,7 @@ class DashboardView extends StatelessWidget {
                                   }
                                 : () {},
                             child: SvgPicture.asset(
-                              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/notification_bell_icon_active.svg",
+                              "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/notification_bell_icon_active.svg",
                             ),
                           ),
                         ],
@@ -105,7 +105,7 @@ class DashboardView extends StatelessWidget {
                                 width: 126,
                                 height: 136,
                                 child: Image.asset(
-                                  "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/sample_person.png",
+                                  "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/sample_person.png",
                                 ),
                               ),
                             ),

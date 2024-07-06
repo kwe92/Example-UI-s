@@ -14,18 +14,18 @@ class SocialMediaIcons extends StatelessWidget {
       children: [
         SocialIconButton(
           onTap: () {},
-          icon: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/google_icon.svg"),
+          icon: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/google_icon.svg"),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: SocialIconButton(
             onTap: () {},
-            icon: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/apple_icon.svg"),
+            icon: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/apple_icon.svg"),
           ),
         ),
         SocialIconButton(
           onTap: () {},
-          icon: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/facebook_icon.svg"),
+          icon: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/facebook_icon.svg"),
         ),
       ],
     );

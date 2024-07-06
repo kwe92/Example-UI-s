@@ -24,8 +24,8 @@ class NavigatorView extends StatelessWidget {
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: SvgPicture.asset(viewModel.selectedIndex == 0
-                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/home_icon_active.svg"
-                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/home_icon.svg"),
+                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/home_icon_active.svg"
+                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/home_icon.svg"),
                   ),
                   label: "Home",
                 ),
@@ -33,8 +33,8 @@ class NavigatorView extends StatelessWidget {
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: SvgPicture.asset(viewModel.selectedIndex == 1
-                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/activity_icon_active.svg"
-                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/activity_icon.svg"),
+                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/activity_icon_active.svg"
+                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/activity_icon.svg"),
                   ),
                   label: "Activity",
                 ),
@@ -42,8 +42,8 @@ class NavigatorView extends StatelessWidget {
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: SvgPicture.asset(viewModel.selectedIndex == 2
-                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/calendar_icon_active.svg"
-                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/calendar_icon.svg"),
+                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/calendar_icon_active.svg"
+                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/calendar_icon.svg"),
                   ),
                   label: "Calendar",
                 ),
@@ -51,8 +51,8 @@ class NavigatorView extends StatelessWidget {
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: SvgPicture.asset(viewModel.selectedIndex == 3
-                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/profile_icon_active.svg"
-                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/profile_icon.svg"),
+                        ? "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/profile_icon_active.svg"
+                        : "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/profile_icon.svg"),
                   ),
                   label: "Profile",
                 ),

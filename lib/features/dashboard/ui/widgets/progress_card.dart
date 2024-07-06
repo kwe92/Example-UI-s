@@ -52,7 +52,7 @@ class ProgressCard extends StatelessWidget {
           Positioned(
             left: 116,
             top: 6,
-            child: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/lib/app/assets/dotted_menu_icon.svg"),
+            child: SvgPicture.asset("/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/dotted_menu_icon.svg"),
           ),
         ],
       ),
