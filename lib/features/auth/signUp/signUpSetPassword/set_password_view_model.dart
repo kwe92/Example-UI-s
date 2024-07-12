@@ -1,8 +1,12 @@
+import 'package:example_ui/features/auth/services/auth_service.dart';
+import 'package:example_ui/features/shared/services/toast_service.dart';
 import 'package:example_ui/features/shared/utility/extended_change_notifier.dart';
-import 'package:example_ui/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 class SetPasswordViewModel extends ExtendedChangeNotifier {
+  final AuthService _authService;
+
+  final ToastService _toastService;
   String? _password;
 
   String? _confirmedPassword;
@@ -17,7 +21,9 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
 
   bool get isMatchingPassword => _password?.trim() == confirmedPassword?.trim();
 
-  bool get successfulLogin => authService.loggedIn;
+  bool get successfulLogin => _authService.loggedIn;
+
+  SetPasswordViewModel(this._authService, this._toastService);
 
   void setPassword(String password) {
     _password = password.trim();
@@ -36,26 +42,26 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
     notifyListeners();
   }
 
-  void setTempUser() => authService.setTempUserPassword(password!);
+  void setTempUser() => _authService.setTempUserPassword(password!);
 
   Future<void> createUser() async {
     try {
       setBusy(true);
-      await authService.createUserWithEmailAndPassword();
+      await _authService.createUserWithEmailAndPassword();
       setBusy(false);
 
-      authService.setLoggedIn(true);
+      _authService.setLoggedIn(true);
     } catch (err, _) {
       setBusy(false);
 
       debugPrint("Error - SetPasswordViewModel: createUser: $err");
 
       if (err.toString().toLowerCase().contains("in use")) {
-        toastService.showSnackBar("email in use.", Colors.red);
+        _toastService.showSnackBar("email in use.", Colors.red);
       } else if (err.toString().toLowerCase().contains("network error")) {
-        toastService.showSnackBar("please check your network connection.", Colors.red);
+        _toastService.showSnackBar("please check your network connection.", Colors.red);
       } else {
-        toastService.showSnackBar("an error has occured please try again.", Colors.red);
+        _toastService.showSnackBar("an error has occured please try again.", Colors.red);
       }
     }
   }

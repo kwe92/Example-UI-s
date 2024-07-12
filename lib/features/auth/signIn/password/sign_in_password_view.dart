@@ -20,123 +20,119 @@ class SignInPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<SignInPasswordViewModel>();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: ChangeNotifierProvider(
-            create: (_) => SignInPasswordViewModel(),
-            builder: (context, _) {
-              final viewModel = context.watch<SignInPasswordViewModel>();
-              return Stack(
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 24),
-                      const Center(
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                  const SizedBox(height: 24),
+                  const Center(
+                    child: Text(
+                      "Sign In",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
                       ),
-                      const SizedBox(height: 80),
-                      const Text(
-                        "Password",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  const Text(
+                    "Password",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Form(
+                    key: formKey,
+                    child: TextFormField(
+                      controller: emailController,
+                      onChanged: viewModel.setPassword,
+                      obscureText: viewModel.isObscured,
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(
+                        hintText: "Enter password",
+                        suffixIcon: VisibilityWidget(
+                          onTap: () => viewModel.setObscure(!viewModel.isObscured),
+                          isObscured: viewModel.isObscured,
                         ),
+                        suffixIconConstraints: const BoxConstraints(maxHeight: 48, maxWidth: 48),
                       ),
-                      const SizedBox(height: 12),
-                      Form(
-                        key: formKey,
-                        child: TextFormField(
-                          controller: emailController,
-                          onChanged: viewModel.setPassword,
-                          obscureText: viewModel.isObscured,
-                          textInputAction: TextInputAction.done,
-                          decoration: InputDecoration(
-                            hintText: "Enter password",
-                            suffixIcon: VisibilityWidget(
-                              onTap: () => viewModel.setObscure(!viewModel.isObscured),
-                              isObscured: viewModel.isObscured,
-                            ),
-                            suffixIconConstraints: const BoxConstraints(maxHeight: 48, maxWidth: 48),
-                          ),
-                          validator: StringService.passwordValidator,
-                        ),
+                      validator: StringService.passwordValidator,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () async => await viewModel.resetpassword(),
+                      child: const Text(
+                        "Forgot password?",
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
-                      const SizedBox(height: 12),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () async => await viewModel.resetpassword(),
-                          child: const Text(
-                            "Forgot password?",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      SizedBox(
-                        width: double.maxFinite,
-                        height: 56,
-                        child: CustomButton(
-                          backgroundColor: !viewModel.isBusy ? null : WorkoutAppColors.grey1,
-                          onTap: !viewModel.isBusy
-                              ? () async {
-                                  if (formKey.currentState?.validate() ?? false) {
-                                    viewModel.setTempUser();
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  SizedBox(
+                    width: double.maxFinite,
+                    height: 56,
+                    child: CustomButton(
+                      backgroundColor: !viewModel.isBusy ? null : WorkoutAppColors.grey1,
+                      onTap: !viewModel.isBusy
+                          ? () async {
+                              if (formKey.currentState?.validate() ?? false) {
+                                viewModel.setTempUser();
 
-                                    await viewModel.signInWithEmailAndPassword();
+                                await viewModel.signInWithEmailAndPassword();
 
-                                    if (viewModel.successfulLogin) {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) => const NavigatorView(),
-                                        ),
-                                      );
-                                    }
-                                  }
+                                if (viewModel.successfulLogin) {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const NavigatorView(),
+                                    ),
+                                  );
                                 }
-                              : () {},
-                          label: "Sign in",
+                              }
+                            }
+                          : () {},
+                      label: "Sign in",
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      const Text(
+                        "Don't have an account?",
+                        style: TextStyle(color: WorkoutAppColors.grey0),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpView()));
+                        },
+                        child: const Text(
+                          "Create Account",
+                          style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),
-                      const SizedBox(height: 24),
-                      Row(
-                        children: [
-                          const Text(
-                            "Don't have an account?",
-                            style: TextStyle(color: WorkoutAppColors.grey0),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpView()));
-                            },
-                            child: const Text(
-                              "Create Account",
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 32),
-                      const HorizontalSeparator(),
-                      const SizedBox(height: 32),
-                      const SocialMediaIcons(),
                     ],
                   ),
-                  if (viewModel.isBusy) const LoadingSpinner(),
+                  const SizedBox(height: 32),
+                  const HorizontalSeparator(),
+                  const SizedBox(height: 32),
+                  const SocialMediaIcons(),
                 ],
-              );
-            },
+              ),
+              if (viewModel.isBusy) const LoadingSpinner(),
+            ],
           ),
         ),
       ),

@@ -1,9 +1,7 @@
-import 'package:example_ui/features/auth/signIn/email/sign_in_email_view.dart';
-import 'package:example_ui/features/auth/signIn/password/sign_in_password_view.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:example_ui/main.dart' as app;
+import '../test/robots/auth_robot.dart';
+// TODO: add bash script to run test for you
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -14,27 +12,33 @@ void main() {
       testWidgets(
         "when a registered user signs in successfully then they are taken to the dashboard view",
         (tester) async {
-          await tester.pumpWidget(
-            MaterialApp(
-              home: SignInEmailView(),
-            ),
-          );
+          // FlutterError.onError = ignoreOverflowErrors;
+
+          final robot = AuthRobot(tester);
+
+          await robot.pumpSignInScreen();
+
+          await robot.verifySignInView();
+
+          await robot.enterUserEmail();
+
+          await _delay();
+
+          await robot.continueToPasswordView();
+
+          await robot.verifyPasswordView();
+
+          await robot.enterUserPassword();
+
+          await _delay();
+
+          await robot.signUserIn();
+
+          await _delay();
         },
       );
     },
   );
 }
 
-class AuthRobot {
-  final WidgetTester tester;
-
-  AuthRobot(this.tester);
-
-  Future<void> pumpSignInScreen() async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: SignInEmailView(),
-      ),
-    );
-  }
-}
+Future<void> _delay([Duration? duration]) async => await Future.delayed(duration ?? const Duration(seconds: 5));

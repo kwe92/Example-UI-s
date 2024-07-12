@@ -1,5 +1,6 @@
+import 'package:example_ui/features/auth/services/auth_service.dart';
+import 'package:example_ui/features/shared/services/toast_service.dart';
 import 'package:example_ui/features/shared/utility/extended_change_notifier.dart';
-import 'package:example_ui/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 class SignInPasswordViewModel extends ExtendedChangeNotifier {
@@ -7,11 +8,17 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
 
   bool _isObscured = true;
 
+  final AuthService _authService;
+
+  final ToastService _toastService;
+
   String? get password => _password;
 
   bool get isObscured => _isObscured;
 
-  bool get successfulLogin => authService.loggedIn;
+  bool get successfulLogin => _authService.loggedIn;
+
+  SignInPasswordViewModel(this._authService, this._toastService);
 
   void setPassword(String password) {
     _password = password.trim();
@@ -24,14 +31,14 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
     notifyListeners();
   }
 
-  void setTempUser() => authService.setTempUserPassword(password!);
+  void setTempUser() => _authService.setTempUserPassword(password!);
 
   Future<void> signInWithEmailAndPassword() async {
     try {
       setBusy(true);
-      await authService.signInWithEmailAndPassword();
+      await _authService.signInWithEmailAndPassword();
       setBusy(false);
-      authService.setLoggedIn(true);
+      _authService.setLoggedIn(true);
     } catch (err) {
       setBusy(false);
 
@@ -40,17 +47,17 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
       final errStr = err.toString().toLowerCase();
 
       if (errStr.contains("invalid-credential")) {
-        toastService.showSnackBar("incorrect email or password.", Colors.red);
+        _toastService.showSnackBar("incorrect email or password.", Colors.red);
       } else if (errStr.contains("network error")) {
-        toastService.showSnackBar("please check your network connection.", Colors.red);
+        _toastService.showSnackBar("please check your network connection.", Colors.red);
       } else {
-        toastService.showSnackBar("an error has occured please try again.", Colors.red);
+        _toastService.showSnackBar("an error has occured please try again.", Colors.red);
       }
     }
   }
 
   Future<void> resetpassword() async {
-    final bool userRequestedPasswordReset = await toastService.forgotPasswordModal();
+    final bool userRequestedPasswordReset = await _toastService.forgotPasswordModal();
 
     await sendResetPasswordEmail(userRequestedPasswordReset);
   }
@@ -59,9 +66,9 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
     try {
       if (userRequestedPasswordReset) {
         setBusy(true);
-        await authService.resetpassword();
+        await _authService.resetpassword();
         setBusy(false);
-        toastService.showSnackBar("password reset email sent to: ${authService.tempUser.email}");
+        _toastService.showSnackBar("password reset email sent to: ${_authService.tempUser.email}");
       }
     } catch (err, _) {
       setBusy(false);
@@ -69,11 +76,11 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
       final parsedError = err.toString().toLowerCase().split("]").last;
 
       if (parsedError.contains("network error")) {
-        toastService.showSnackBar(parsedError, Colors.red);
+        _toastService.showSnackBar(parsedError, Colors.red);
         return;
       }
 
-      toastService.showSnackBar(err.toString().toLowerCase(), Colors.red);
+      _toastService.showSnackBar(err.toString().toLowerCase(), Colors.red);
     }
   }
 }
