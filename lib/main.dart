@@ -33,27 +33,18 @@ void main() async {
 
 List<SingleChildWidget> _providers = [
   ChangeNotifierProvider(
+    create: (_) => SignInEmailViewModel(authService),
+  ),
+  ChangeNotifierProvider(
     create: (_) => SignInPasswordViewModel(authService, toastService),
-  ),
-  ChangeNotifierProvider(
-    create: (context) => DashboardViewModel(notificationService),
-  ),
-  ChangeNotifierProvider(
-    create: (context) => SignInEmailViewModel(authService),
   ),
   ChangeNotifierProvider(
     create: (context) => SignUpViewModel(authService),
   ),
   ChangeNotifierProvider(
-    create: (_) => SignInEmailViewModel(authService),
-  ),
-  ChangeNotifierProvider(
     create: (_) => SetPasswordViewModel(authService, toastService),
   ),
   ChangeNotifierProvider(
-    create: (_) => SetPasswordViewModel(authService, toastService),
-  ),
-  ChangeNotifierProvider(
-    create: (_) => SignUpViewModel(authService),
+    create: (context) => DashboardViewModel(notificationService),
   ),
 ];
