@@ -17,6 +17,8 @@ class SignInEmailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<SignInEmailViewModel>();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -24,92 +26,86 @@ class SignInEmailView extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: ChangeNotifierProvider(
-            create: (_) => SignInEmailViewModel(),
-            builder: (context, _) {
-              final viewModel = context.watch<SignInEmailViewModel>();
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 24),
-                  const Center(
-                    child: Text(
-                      "Sign In",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 24),
+              const Center(
+                child: Text(
+                  "Sign In",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
                   ),
-                  const SizedBox(height: 80),
-                  const Text(
-                    "Email Address",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                ),
+              ),
+              const SizedBox(height: 80),
+              const Text(
+                "Email Address",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Form(
+                key: formKey,
+                child: TextFormField(
+                  controller: emailController,
+                  onChanged: viewModel.setEmail,
+                  textInputAction: TextInputAction.done,
+                  decoration: const InputDecoration(
+                    hintText: "Enter email address",
                   ),
-                  const SizedBox(height: 12),
-                  Form(
-                    key: formKey,
-                    child: TextFormField(
-                      controller: emailController,
-                      onChanged: viewModel.setEmail,
-                      textInputAction: TextInputAction.done,
-                      decoration: const InputDecoration(
-                        hintText: "Enter email address",
-                      ),
-                      validator: StringService.emailValidator,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  SizedBox(
-                    width: double.maxFinite,
-                    height: 56,
-                    child: CustomButton(
-                      onTap: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          viewModel.setTempUser();
+                  validator: StringService.emailValidator,
+                ),
+              ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.maxFinite,
+                height: 56,
+                child: CustomButton(
+                  onTap: () {
+                    if (formKey.currentState?.validate() ?? false) {
+                      viewModel.setTempUser();
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => SignInPasswordView(),
-                            ),
-                          );
-                        }
-                      },
-                      label: "Continue",
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => SignInPasswordView(),
+                        ),
+                      );
+                    }
+                  },
+                  label: "Continue",
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  const Text(
+                    "Don't have an account?",
+                    style: TextStyle(color: WorkoutAppColors.grey0),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => SignUpView(),
+                      ),
+                    ),
+                    child: const Text(
+                      "Create Account",
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      const Text(
-                        "Don't have an account?",
-                        style: TextStyle(color: WorkoutAppColors.grey0),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => SignUpView(),
-                          ),
-                        ),
-                        child: const Text(
-                          "Create Account",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 32),
-                  const HorizontalSeparator(),
-                  const SizedBox(height: 32),
-                  const SocialMediaIcons(),
                 ],
-              );
-            },
+              ),
+              const SizedBox(height: 32),
+              const HorizontalSeparator(),
+              const SizedBox(height: 32),
+              const SocialMediaIcons(),
+            ],
           ),
         ),
       ),

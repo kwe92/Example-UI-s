@@ -1,14 +1,18 @@
-import 'package:example_ui/features/shared/services/services.dart';
+import 'package:example_ui/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class SignUpViewModel extends ChangeNotifier {
-  String? _email;
+  final AuthService _authService;
 
-  String? get email => _email;
+  String? _email;
 
   String? _name;
 
+  String? get email => _email;
+
   String? get name => _name;
+
+  SignUpViewModel(this._authService);
 
   void setEmail(String email) {
     _email = email.trim();
@@ -23,8 +27,8 @@ class SignUpViewModel extends ChangeNotifier {
   }
 
   void setTempUser() {
-    authService.setTempUserEmail(email!);
+    _authService.setTempUserEmail(email!);
 
-    authService.setTempUserName(name!);
+    _authService.setTempUserName(name!);
   }
 }

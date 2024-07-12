@@ -1,8 +1,8 @@
 import 'package:example_ui/features/dashboard/model/exercise_category.dart';
 import 'package:example_ui/features/dashboard/model/notification.dart';
 import 'package:example_ui/features/dashboard/model/workout_progress.dart';
+import 'package:example_ui/features/shared/services/notification_service.dart';
 import 'package:example_ui/features/shared/utility/extended_change_notifier.dart';
-import 'package:example_ui/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 // TODO: add exercises place holder data for WorkoutProgress instances
@@ -12,11 +12,29 @@ class DashboardViewModel extends ExtendedChangeNotifier {
 
   final _categories = ["All", "Warm Up", "Yoga", "Biceps", "Chest", "Legs"];
 
+  final NotificationService _notificationService;
+
   int get selectedCategory => _selectedCategory;
 
   List<String> get categories => _categories;
 
-  List<AppNotification> get notifications => notificationService.notifications;
+  List<AppNotification> get notifications => _notificationService.notifications;
+
+  DashboardViewModel(this._notificationService);
+
+  void setSelectedCategory(int index) {
+    _selectedCategory = index;
+
+    debugPrint("$_selectedCategory");
+
+    notifyListeners();
+  }
+
+  Future<void> getNotifications() async {
+    setBusy(true);
+    await _notificationService.getNotifications();
+    setBusy(false);
+  }
 
   List<WorkoutProgress> get workoutProgress => [
         WorkoutProgress(
@@ -127,18 +145,4 @@ class DashboardViewModel extends ExtendedChangeNotifier {
       image: "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/lower_back_exercise_icon.png",
     ),
   ];
-
-  void setSelectedCategory(int index) {
-    _selectedCategory = index;
-
-    debugPrint("$_selectedCategory");
-
-    notifyListeners();
-  }
-
-  Future<void> getNotifications() async {
-    setBusy(true);
-    await notificationService.getNotifications();
-    setBusy(false);
-  }
 }
