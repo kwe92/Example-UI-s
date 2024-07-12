@@ -1,9 +1,11 @@
 import 'package:example_ui/features/auth/signIn/email/sign_in_email_view.dart';
+import 'package:example_ui/features/auth/signIn/password/sign_in_password_view_model.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
-import 'package:example_ui/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../setup/test_helper_mocks.dart';
 
 void main() {
   group(
@@ -12,19 +14,9 @@ void main() {
       testWidgets(
         "when a registered user signs in successfully then they are taken to the dashboard view",
         (tester) async {
-          TestWidgetsFlutterBinding.ensureInitialized();
-
-          // await Firebase.initializeApp(
-          //   options: DefaultFirebaseOptions.currentPlatform,
-          // );
-
           FlutterError.onError = ignoreOverflowErrors;
 
-          await tester.pumpWidget(
-            MaterialApp(
-              home: SignInEmailView(),
-            ),
-          );
+          // pumpSignInScreen
 
           final signInTextFinder = find.text("Sign In");
 
@@ -70,9 +62,11 @@ void main() {
 
           expect(signInButtonFinder, findsOneWidget);
 
-          // await tester.tap(signInButtonFinder);
+          await tester.tap(signInButtonFinder);
 
-          // await tester.pumpAndSettle(const Duration(seconds: 1));
+          await tester.pumpAndSettle(const Duration(seconds: 1));
+
+          debugPrint("${find.byType(Text)}");
         },
       );
     },
@@ -85,38 +79,19 @@ class AuthRobot {
   AuthRobot(this.tester);
 
   Future<void> pumpSignInScreen() async {
+    final mockAuthService = TestHelperMocks.getMockAuthService();
+
     await tester.pumpWidget(
-      MaterialApp(
-        home: SignInEmailView(),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => SignInPasswordViewModel(mockAuthService),
+          ),
+        ],
+        child: MaterialApp(
+          home: SignInEmailView(),
+        ),
       ),
     );
-  }
-}
-
-// TODO: Review this code
-
-void ignoreOverflowErrors(
-  FlutterErrorDetails details, {
-  bool forceReport = false,
-}) {
-  bool ifIsOverflowError = false;
-  bool isUnableToLoadAsset = false;
-
-  // Detect overflow error.
-  var exception = details.exception;
-  if (exception is FlutterError) {
-    ifIsOverflowError = !exception.diagnostics.any(
-      (error) => error.value.toString().startsWith("A RenderFlex overflowed by"),
-    );
-    isUnableToLoadAsset = !exception.diagnostics.any(
-      (error) => error.value.toString().startsWith("Unable to load asset"),
-    );
-  }
-
-  // Ignore if is overflow error.
-  if (ifIsOverflowError || isUnableToLoadAsset) {
-    debugPrint('Ignored Error');
-  } else {
-    FlutterError.dumpErrorToConsole(details, forceReport: forceReport);
   }
 }
