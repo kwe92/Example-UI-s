@@ -1,3 +1,4 @@
+import 'package:example_ui/features/auth/services/auth_service.dart';
 import 'package:example_ui/features/shared/utility/extended_change_notifier.dart';
 import 'package:example_ui/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +8,15 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
 
   bool _isObscured = true;
 
+  final AuthService _authService;
+
   String? get password => _password;
 
   bool get isObscured => _isObscured;
 
-  bool get successfulLogin => authService.loggedIn;
+  bool get successfulLogin => _authService.loggedIn;
+
+  SignInPasswordViewModel(this._authService);
 
   void setPassword(String password) {
     _password = password.trim();
@@ -24,14 +29,14 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
     notifyListeners();
   }
 
-  void setTempUser() => authService.setTempUserPassword(password!);
+  void setTempUser() => _authService.setTempUserPassword(password!);
 
   Future<void> signInWithEmailAndPassword() async {
     try {
       setBusy(true);
-      await authService.signInWithEmailAndPassword();
+      await _authService.signInWithEmailAndPassword();
       setBusy(false);
-      authService.setLoggedIn(true);
+      _authService.setLoggedIn(true);
     } catch (err) {
       setBusy(false);
 
@@ -59,9 +64,9 @@ class SignInPasswordViewModel extends ExtendedChangeNotifier {
     try {
       if (userRequestedPasswordReset) {
         setBusy(true);
-        await authService.resetpassword();
+        await _authService.resetpassword();
         setBusy(false);
-        toastService.showSnackBar("password reset email sent to: ${authService.tempUser.email}");
+        toastService.showSnackBar("password reset email sent to: ${_authService.tempUser.email}");
       }
     } catch (err, _) {
       setBusy(false);
