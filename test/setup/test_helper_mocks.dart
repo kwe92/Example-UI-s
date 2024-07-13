@@ -1,8 +1,15 @@
 import 'package:example_ui/features/auth/services/auth_service.dart';
+import 'package:example_ui/features/auth/signIn/email/sign_in_email_view_model.dart';
+import 'package:example_ui/features/auth/signIn/password/sign_in_password_view_model.dart';
+import 'package:example_ui/features/auth/signUp/signUpSetPassword/set_password_view_model.dart';
+import 'package:example_ui/features/auth/signUp/sign_up_view_model.dart';
+import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
 import 'package:example_ui/features/shared/services/notification_service.dart';
 import 'package:example_ui/features/shared/services/toast_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:provider/provider.dart';
 
 class MockAuthService extends Mock implements AuthService {}
 
@@ -19,6 +26,8 @@ class TestHelperMocks {
 
     // mock functions
     when(() => mockService.signInWithEmailAndPassword()).thenAnswer((_) async => await Future.value());
+
+    when(() => mockService.createUserWithEmailAndPassword()).thenAnswer((_) async => await Future.value());
 
     when(() => mockService.loggedIn).thenReturn(true);
 
@@ -47,6 +56,37 @@ class TestHelperMocks {
 
     // return mock
     return mockService;
+  }
+
+  static Future<void> pumpViewWithMocks(Widget view, WidgetTester tester) async {
+    final mockAuthService = TestHelperMocks.getMockAuthService();
+    final mockToastService = TestHelperMocks.getMockToastService();
+    final mockNotificationService = TestHelperMocks.getMockNotificationService();
+
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => SignInEmailViewModel(mockAuthService),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => SignInPasswordViewModel(mockAuthService, mockToastService),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => DashboardViewModel(mockNotificationService),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => SignUpViewModel(mockAuthService),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => SetPasswordViewModel(mockAuthService, mockToastService),
+          ),
+        ],
+        child: MaterialApp(
+          home: view,
+        ),
+      ),
+    );
   }
 }
 
@@ -77,3 +117,5 @@ void ignoreOverflowErrors(
     FlutterError.dumpErrorToConsole(details, forceReport: forceReport);
   }
 }
+
+Future<void> testDelay([Duration? duration]) async => await Future.delayed(duration ?? const Duration(seconds: 5));
