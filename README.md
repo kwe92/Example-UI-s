@@ -3,6 +3,9 @@
 - State Management: Provider Package
 - User Authentication: Firebase Auth
 - Route Navigation: Standard Library Navigator
+- Integration Tests
+- Widget Tests
+- Unit Tests
 
 ## Workout App Screenshots
 
