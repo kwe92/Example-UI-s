@@ -9,7 +9,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group(
-    "Intengreation Test - Signin",
+    "Integration Test - Signin",
     () {
       testWidgets(
         "when a registered user signs in successfully then they are taken to the dashboard view",

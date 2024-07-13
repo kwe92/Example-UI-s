@@ -8,7 +8,7 @@ import '../test/setup/test_helper_mocks.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group("SignupView - Test", () {
+  group("Integration Test - Signin", () {
     testWidgets("when a user signs up successfully then they are taken to the dashboard", (tester) async {
       final authRobot = AuthRobot(tester);
 
