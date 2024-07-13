@@ -1,96 +1,27 @@
-import 'package:example_ui/features/auth/signIn/email/sign_in_email_view.dart';
-import 'package:example_ui/features/auth/signIn/email/sign_in_email_view_model.dart';
-import 'package:example_ui/features/auth/signIn/password/sign_in_password_view_model.dart';
-import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
 
-import '../setup/test_helper_mocks.dart';
+// TODO: Think about how many robots you would like to have \ one per feature? What about features with multiple views like aduthentication
 
 class AuthRobot {
   final WidgetTester tester;
 
   AuthRobot(this.tester);
 
-  Future<void> pumpSignInScreen() async {
-    final mockAuthService = TestHelperMocks.getMockAuthService();
-    final mockToastService = TestHelperMocks.getMockToastService();
-
-    final mockNotificationService = TestHelperMocks.getMockNotificationService();
-
-    await tester.pumpWidget(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => SignInEmailViewModel(mockAuthService),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => SignInPasswordViewModel(mockAuthService, mockToastService),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => DashboardViewModel(mockNotificationService),
-          ),
-        ],
-        child: MaterialApp(
-          home: SignInEmailView(),
-        ),
-      ),
-    );
-  }
-
-  Future<void> verifySignInView() async {
-    final signInTextFinder = find.text("Sign In");
-
-    // debugPrint("$textFinder");
-
-    final emailTextFieldFinder = find.byType(TextFormField);
-
-    // debugPrint("$emailTextFieldFinder");
-
-    final continueButtonFinder = find.byType(CustomButton);
-
-    // debugPrint("$continueButtonFinder");
-
-    expect(signInTextFinder, findsOneWidget);
-
-    expect(emailTextFieldFinder, findsOneWidget);
-
-    expect(continueButtonFinder, findsOneWidget);
-  }
-
-  Future<void> enterUserEmail() async {
+  Future<void> enterRegisteredUserEmail() async {
     final emailTextFieldFinder = find.byType(TextFormField);
 
     await tester.enterText(emailTextFieldFinder, "test1101@gmail.com");
   }
 
-  Future<void> continueToPasswordView() async {
-    final continueButtonFinder = find.byType(CustomButton);
-
-    await tester.tap(continueButtonFinder);
-
-    await tester.pumpAndSettle(const Duration(seconds: 1));
-  }
-
-  Future<void> verifyPasswordView() async {
-    final passwordTextFinder = find.text("Password");
-
-    expect(passwordTextFinder, findsOneWidget);
-
-    final passwordTextFormField = find.byType(TextFormField, skipOffstage: false).last;
-
-    expect(passwordTextFormField, findsOneWidget);
-  }
-
-  Future<void> enterUserPassword() async {
+  Future<void> enterRegisteredUserPassword() async {
     final passwordTextFormField = find.byType(TextFormField, skipOffstage: false).last;
 
     await tester.enterText(passwordTextFormField, "Password11!!");
   }
 
-  Future<void> signUserIn() async {
+  Future<void> tapSignInButton() async {
     final signInButtonFinder = find.byType(CustomButton);
 
     expect(signInButtonFinder, findsOneWidget);
@@ -98,7 +29,67 @@ class AuthRobot {
     await tester.tap(signInButtonFinder);
 
     await tester.pumpAndSettle(const Duration(seconds: 1));
+  }
 
-    // debugPrint("${find.byType(Text)}");
+  Future<void> tapCreateAccountButton() async {
+    final createAccountButtonFinder = find.byType(TextButton);
+
+    expect(createAccountButtonFinder, findsOneWidget);
+
+    await tester.tap(createAccountButtonFinder);
+
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+  }
+
+  Future<void> enterNewUserNameAndEmail() async {
+    final signUpTextFinder = find.text("Sign Up");
+
+    final nameTextFieldFinder = find.byType(TextField).first;
+
+    final emailTextFieldFinder = find.byType(TextField).last;
+
+    expect(nameTextFieldFinder, findsOneWidget);
+
+    expect(emailTextFieldFinder, findsOneWidget);
+
+    expect(signUpTextFinder, findsOneWidget);
+
+    await tester.enterText(nameTextFieldFinder, "Shoto Todoroki");
+
+    await tester.enterText(emailTextFieldFinder, "shotostyle@myhero.io");
+  }
+
+  Future<void> tapContinueButton() async {
+    Finder continueButtonFinder = find.byType(CustomButton);
+
+    expect(continueButtonFinder, findsOneWidget);
+
+    await tester.tap(continueButtonFinder);
+
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+  }
+
+  Future<void> enterNewUserPassword() async {
+    final setPasswordTextFinder = find.text("Set Password");
+
+    final passwordTextFormFieldFinder = find.byType(TextFormField).first;
+
+    final confirmPasswordTextFormFieldFinder = find.byType(TextFormField).last;
+
+    expect(setPasswordTextFinder, findsOneWidget);
+
+    expect(passwordTextFormFieldFinder, findsOneWidget);
+
+    expect(confirmPasswordTextFormFieldFinder, findsOneWidget);
+
+    await tester.enterText(passwordTextFormFieldFinder, "Endeavor11!!");
+
+    await tester.enterText(confirmPasswordTextFormFieldFinder, "Endeavor11!!");
+  }
+
+  void expectDashboardText() async {
+    final dashboardText = find.text("Start Strong and Set Your Fitness Goals");
+
+    expect(dashboardText, findsOneWidget);
   }
 }
