@@ -102,6 +102,30 @@ final secondaryButtonStyle = mainButtonStyle.copyWith(
   ),
 );
 
+final borderButtonStyle = ButtonStyle(
+  side: resolver(
+    const BorderSide(
+      color: WorkoutAppColors.mainThemeColor,
+    ),
+  ),
+  shape: resolver(
+    const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(16),
+      ),
+    ),
+  ),
+  backgroundColor: resolver(
+    Colors.black,
+  ),
+  textStyle: resolver(
+    TextStyle(
+      foreground: Paint()..color = WorkoutAppColors.mainThemeColor,
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+    ),
+  ),
+);
 final categoryButtonStyle = mainButtonStyle.copyWith(
   padding: resolver(
     const EdgeInsets.symmetric(horizontal: 16),
