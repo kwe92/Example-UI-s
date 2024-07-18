@@ -73,7 +73,7 @@ class TestHelperMocks {
             create: (context) => SignInPasswordViewModel(mockAuthService, mockToastService),
           ),
           ChangeNotifierProvider(
-            create: (context) => DashboardViewModel(mockNotificationService),
+            create: (context) => DashboardViewModel(mockNotificationService, mockToastService),
           ),
           ChangeNotifierProvider(
             create: (context) => SignUpViewModel(mockAuthService),

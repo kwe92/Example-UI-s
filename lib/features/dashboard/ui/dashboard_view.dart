@@ -3,7 +3,6 @@ import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
 import 'package:example_ui/features/dashboard/ui/widgets/exercise_list_tile.dart';
 import 'package:example_ui/features/dashboard/ui/widgets/header_text_button.dart';
 import 'package:example_ui/features/dashboard/ui/widgets/progress_card.dart';
-import 'package:example_ui/features/shared/services/services.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
 import 'package:example_ui/features/shared/widgets/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,8 @@ class DashboardView extends StatelessWidget {
                         onTap: !viewModel.isBusy
                             ? () async {
                                 await viewModel.getNotifications();
-                                await toastService.notificationsModal(notifications: viewModel.notifications);
+
+                                await viewModel.notificationsModal();
                               }
                             : () {},
                         child: SvgPicture.asset(

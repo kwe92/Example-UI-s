@@ -6,6 +6,8 @@ import 'package:example_ui/features/auth/signIn/password/sign_in_password_view_m
 import 'package:example_ui/features/auth/signUp/signUpSetPassword/set_password_view_model.dart';
 import 'package:example_ui/features/auth/signUp/sign_up_view_model.dart';
 import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
+import 'package:example_ui/features/exercise/ui/exercise_view.dart';
+import 'package:example_ui/features/exercise/ui/exercise_view_model.dart';
 import 'package:example_ui/features/shared/services/services.dart';
 import 'package:example_ui/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,6 +27,7 @@ void main() async {
       child: MaterialApp(
         navigatorKey: WidgetKey.navigatorKey,
         theme: WorkoutAppTheme.getTheme(),
+        // home: const ExerciseView(),
         home: SignInEmailView(),
       ),
     ),
@@ -45,6 +48,9 @@ List<SingleChildWidget> _providers = [
     create: (_) => SetPasswordViewModel(authService, toastService),
   ),
   ChangeNotifierProvider(
-    create: (context) => DashboardViewModel(notificationService),
+    create: (context) => DashboardViewModel(notificationService, toastService),
   ),
+  ChangeNotifierProvider(
+    create: (context) => ExerciseViewModel(notificationService, toastService),
+  )
 ];

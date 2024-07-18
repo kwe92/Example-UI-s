@@ -2,6 +2,7 @@ import 'package:example_ui/features/dashboard/model/exercise_category.dart';
 import 'package:example_ui/features/dashboard/model/notification.dart';
 import 'package:example_ui/features/dashboard/model/workout_progress.dart';
 import 'package:example_ui/features/shared/services/notification_service.dart';
+import 'package:example_ui/features/shared/services/toast_service.dart';
 import 'package:example_ui/features/shared/utility/extended_change_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +15,15 @@ class DashboardViewModel extends ExtendedChangeNotifier {
 
   final NotificationService _notificationService;
 
+  final ToastService _toastService;
+
   int get selectedCategory => _selectedCategory;
 
   List<String> get categories => _categories;
 
   List<AppNotification> get notifications => _notificationService.notifications;
 
-  DashboardViewModel(this._notificationService);
+  DashboardViewModel(this._notificationService, this._toastService);
 
   void setSelectedCategory(int index) {
     _selectedCategory = index;
@@ -35,6 +38,10 @@ class DashboardViewModel extends ExtendedChangeNotifier {
     await _notificationService.getNotifications();
     setBusy(false);
   }
+
+  Future<void> notificationsModal() async => await _toastService.notificationsModal(notifications: notifications);
+
+  Future<void> continueExerciseModal(WorkoutProgress workoutProgress) async => _toastService.continueExerciseBottomModal(workoutProgress);
 
   List<WorkoutProgress> get workoutProgress => [
         WorkoutProgress(

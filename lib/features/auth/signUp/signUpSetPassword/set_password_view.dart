@@ -5,7 +5,6 @@ import 'package:example_ui/features/auth/signIn/shared/social_media_icons.dart';
 import 'package:example_ui/features/auth/signUp/signUpSetPassword/set_password_view_model.dart';
 import 'package:example_ui/features/navigator/navigator_view.dart';
 import 'package:example_ui/features/shared/services/string_service.dart';
-import 'package:example_ui/features/shared/services/services.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
 import 'package:example_ui/features/shared/widgets/loading_spinner.dart';
 import 'package:example_ui/features/shared/widgets/visibility_widget.dart';
@@ -109,7 +108,7 @@ class SetPasswordView extends StatelessWidget {
                           ? () async {
                               if (formKey.currentState?.validate() ?? false) {
                                 if (!viewModel.isMatchingPassword) {
-                                  toastService.showSnackBar("Passwords must match");
+                                  viewModel.matchingPasswordWarning();
                                   return;
                                 }
                                 viewModel.setTempUser();

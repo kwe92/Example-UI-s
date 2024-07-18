@@ -1,9 +1,10 @@
 import 'package:example_ui/app/theme/colors.dart';
 import 'package:example_ui/features/dashboard/model/workout_progress.dart';
-import 'package:example_ui/features/shared/services/services.dart';
+import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
 import 'package:example_ui/features/shared/widgets/progress_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class ProgressCard extends StatelessWidget {
   final WorkoutProgress workoutProgress;
@@ -15,8 +16,9 @@ class ProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<DashboardViewModel>();
     return GestureDetector(
-      onTap: () => toastService.continueExerciseBottomModal(workoutProgress),
+      onTap: () => viewModel.continueExerciseModal(workoutProgress),
       child: Stack(
         children: [
           Container(

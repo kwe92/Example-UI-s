@@ -44,6 +44,8 @@ class SetPasswordViewModel extends ExtendedChangeNotifier {
 
   void setTempUser() => _authService.setTempUserPassword(password!);
 
+  void matchingPasswordWarning() => _toastService.showSnackBar("Passwords must match");
+
   Future<void> createUser() async {
     try {
       setBusy(true);
