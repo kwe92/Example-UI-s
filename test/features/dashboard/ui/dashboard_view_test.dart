@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../setup/test_helper_mocks.dart';
 
 void main() {
-  group("dDashboardView - Tests", () {
+  group("DashboardView - Tests", () {
     final MockNotificationService mockNotificationService = TestHelperMocks.getMockNotificationService();
 
     final MockAuthService mockAuthService = TestHelperMocks.getMockAuthService();
