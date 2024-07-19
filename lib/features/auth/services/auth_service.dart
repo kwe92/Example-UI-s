@@ -20,7 +20,7 @@ class AuthService extends ChangeNotifier {
 
   bool get loggedIn => _loggedIn;
 
-  static late final AuthService? _singleton;
+  static AuthService? _singleton;
 
   factory AuthService(FirebaseService firebaseService) {
     _singleton ??= AuthService._internal(firebaseService);

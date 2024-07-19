@@ -12,7 +12,7 @@ import 'package:flutter_svg/svg.dart';
 // TODO: refactor as this module is quite big
 
 class ToastService {
-  static late final ToastService? _singleton;
+  static ToastService? _singleton;
 
   final AuthService _authService;
 

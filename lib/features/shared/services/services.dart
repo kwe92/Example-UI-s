@@ -3,6 +3,8 @@ import 'package:example_ui/features/shared/services/firebase_service.dart';
 import 'package:example_ui/features/shared/services/notification_service.dart';
 import 'package:example_ui/features/shared/services/toast_service.dart';
 
+// lazy global services
+
 NotificationService get notificationService => NotificationService();
 
 FirebaseService get firebaseService => FirebaseService();
