@@ -1,9 +1,9 @@
 import 'package:example_ui/app/constants/constants.dart';
 import 'package:example_ui/app/theme/colors.dart';
 import 'package:example_ui/app/theme/workout_app_theme.dart';
+import 'package:example_ui/features/auth/services/auth_service.dart';
 import 'package:example_ui/features/dashboard/model/notification.dart';
 import 'package:example_ui/features/dashboard/model/workout_progress.dart';
-import 'package:example_ui/features/shared/services/services.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
 import 'package:example_ui/features/shared/widgets/progress_counter.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +12,16 @@ import 'package:flutter_svg/svg.dart';
 // TODO: refactor as this module is quite big
 
 class ToastService {
-  static final ToastService _singleton = ToastService._internal();
+  static late final ToastService? _singleton;
 
-  factory ToastService() => _singleton;
+  final AuthService _authService;
 
-  ToastService._internal();
+  factory ToastService(AuthService authService) {
+    _singleton ??= ToastService._internal(authService);
+    return _singleton!;
+  }
+
+  ToastService._internal(this._authService);
 
   Future<T?> notificationsModal<T>({required List<AppNotification> notifications, Color barrierColor = Colors.transparent}) {
     return showDialog<T>(
@@ -215,7 +220,7 @@ class ToastService {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      "an email will be sent to: " "${authService.tempUser.email}",
+                      "an email will be sent to: " "${_authService.tempUser.email}",
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                     ),

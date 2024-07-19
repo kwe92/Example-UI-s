@@ -5,8 +5,8 @@ import 'package:example_ui/features/shared/services/toast_service.dart';
 
 NotificationService get notificationService => NotificationService();
 
-AuthService get authService => AuthService();
-
-ToastService get toastService => ToastService();
-
 FirebaseService get firebaseService => FirebaseService();
+
+AuthService get authService => AuthService(firebaseService);
+
+ToastService get toastService => ToastService(authService);

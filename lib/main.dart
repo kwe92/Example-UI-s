@@ -6,7 +6,6 @@ import 'package:example_ui/features/auth/signIn/password/sign_in_password_view_m
 import 'package:example_ui/features/auth/signUp/signUpSetPassword/set_password_view_model.dart';
 import 'package:example_ui/features/auth/signUp/sign_up_view_model.dart';
 import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
-import 'package:example_ui/features/exercise/ui/exercise_view.dart';
 import 'package:example_ui/features/exercise/ui/exercise_view_model.dart';
 import 'package:example_ui/features/shared/services/services.dart';
 import 'package:example_ui/firebase_options.dart';

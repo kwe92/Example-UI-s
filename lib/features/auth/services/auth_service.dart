@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:example_ui/features/shared/models/user_model.dart';
-import 'package:example_ui/features/shared/services/services.dart';
+import 'package:example_ui/features/shared/services/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthService extends ChangeNotifier {
+  FirebaseService _firebaseService;
+
   UserModel _tempUser = UserModel(id: "", fullName: "", email: "", password: "");
 
   User? _firebaseUser;
@@ -18,11 +20,14 @@ class AuthService extends ChangeNotifier {
 
   bool get loggedIn => _loggedIn;
 
-  static final AuthService _singleton = AuthService._internal();
+  static late final AuthService? _singleton;
 
-  factory AuthService() => _singleton;
+  factory AuthService(FirebaseService firebaseService) {
+    _singleton ??= AuthService._internal(firebaseService);
+    return _singleton!;
+  }
 
-  AuthService._internal();
+  AuthService._internal(this._firebaseService);
 
   void setTempUserEmail(String email) {
     _tempUser.email = email;
@@ -55,7 +60,7 @@ class AuthService extends ChangeNotifier {
   Future<void> createUserWithEmailAndPassword() async {
     debugPrint("AuthService - createUserWithEmailAndPassword: _tempUser: $_tempUser");
     UserCredential firebaseUserCredentials =
-        await firebaseService.authInstance.createUserWithEmailAndPassword(email: _tempUser.email!, password: _tempUser.password!);
+        await _firebaseService.authInstance.createUserWithEmailAndPassword(email: _tempUser.email!, password: _tempUser.password!);
 
     _firebaseUser = firebaseUserCredentials.user;
 
@@ -66,7 +71,7 @@ class AuthService extends ChangeNotifier {
 
   Future<void> signInWithEmailAndPassword() async {
     var userCredential =
-        await firebaseService.authInstance.signInWithEmailAndPassword(email: _tempUser.email!, password: _tempUser.password!);
+        await _firebaseService.authInstance.signInWithEmailAndPassword(email: _tempUser.email!, password: _tempUser.password!);
 
     _firebaseUser = userCredential.user;
 
@@ -80,7 +85,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> resetpassword() async {
-    await firebaseService.authInstance.sendPasswordResetEmail(email: _tempUser.email!);
+    await _firebaseService.authInstance.sendPasswordResetEmail(email: _tempUser.email!);
   }
 
   void resetResources() {
