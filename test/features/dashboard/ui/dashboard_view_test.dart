@@ -1,65 +1,68 @@
 import 'package:example_ui/features/dashboard/ui/dashboard_view.dart';
 import 'package:example_ui/features/dashboard/ui/dashboard_view_model.dart';
-import 'package:example_ui/features/dashboard/ui/widgets/progress_card.dart';
 import 'package:example_ui/features/shared/services/toast_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../robots/dashboard_robot.dart';
 import '../../../setup/test_helper_mocks.dart';
+import '../../../setup/utility.dart';
 
 void main() {
   group("DashboardView - Tests", () {
-    final MockNotificationService mockNotificationService = TestHelperMocks.getMockNotificationService();
+    late MockNotificationService mockNotificationService;
 
-    final MockAuthService mockAuthService = TestHelperMocks.getMockAuthService();
+    late MockAuthService mockAuthService;
 
-    final toastService = ToastService(mockAuthService);
+    late ToastService toastService;
 
-    final viewModel = DashboardViewModel(mockNotificationService, toastService);
+    late DashboardViewModel viewModel;
 
-    Future<void> pumpDashboardView(WidgetTester tester) async =>
-        await TestHelperMocks.pumpViewWithModel(const DashboardView(), viewModel, tester);
+    setUp(() {
+      mockNotificationService = TestHelperMocks.getMockNotificationService();
+
+      mockAuthService = TestHelperMocks.getMockAuthService();
+
+      toastService = ToastService(mockAuthService);
+
+      viewModel = DashboardViewModel(mockNotificationService, toastService);
+    });
 
     testWidgets('when notification icon pressed then notification modal is shown', (tester) async {
+      // Arrange - Setup
       FlutterError.onError = ignoreOverflowErrors;
 
-      await pumpDashboardView(tester);
+      final robot = DashboardRobot(tester);
 
-      await tester.pumpAndSettle();
+      // Act
+      await TestHelperMocks.pumpViewWithModel(const DashboardView(), viewModel, tester);
 
-      // debugPrint("${find.byType(Text, skipOffstage: false)}");
+      await robot.tapNotificationBell();
 
-      final notificationBellFinder = find.byType(NotificationBellIcon);
-
-      expect(notificationBellFinder, findsOneWidget);
-
-      await tester.tap(notificationBellFinder);
-
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-
-      final notificationFinder = find.text(mockNotificationService.notifications[0].message);
-
-      expect(notificationFinder, findsOneWidget);
+      // Assert - Result
+      robot.expectNotificationModal(mockNotificationService);
 
       // debugPrint("${find.byType(Text, skipOffstage: false)}");
     });
 
     testWidgets("when progress card pressed then continue exercise modal appears", (tester) async {
+      // Arrange - Setup
+      setTestDeviceSize(tester);
+
       FlutterError.onError = ignoreOverflowErrors;
 
-      await pumpDashboardView(tester);
+      final robot = DashboardRobot(tester);
 
-      final progressCardFinder = find.byType(ProgressCard).first;
+      // Act
+      await TestHelperMocks.pumpViewWithModel(const DashboardView(), viewModel, tester);
 
-      expect(progressCardFinder, findsOneWidget);
+      await robot.tapProgressCard();
 
-      await tester.tap(progressCardFinder);
+      robot.expectContinueExerciseModal();
 
-      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await robot.tapContinueButton();
 
-      final continueButtonFinder = find.text("Continue Exercise");
-
-      expect(continueButtonFinder, findsOneWidget);
+      robot.expectContinueExerciseModalDismissed();
 
       // debugPrint("${find.byType(Text, skipOffstage: false)}");
     });
