@@ -115,8 +115,8 @@ class SignInPasswordView extends StatelessWidget {
                         style: TextStyle(color: WorkoutAppColors.grey0),
                       ),
                       TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpView()));
+                        onPressed: () async {
+                          await Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpView()));
                         },
                         child: const Text(
                           "Create Account",
