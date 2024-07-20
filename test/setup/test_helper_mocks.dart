@@ -142,7 +142,7 @@ void ignoreOverflowErrors(
 
   // Ignore if overflow error.
   if (ifIsOverflowError || isUnableToLoadAsset) {
-    debugPrint('Ignored Error');
+    debugPrint('Overflow Error Ignored');
   } else {
     FlutterError.dumpErrorToConsole(details, forceReport: forceReport);
   }
