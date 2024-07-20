@@ -65,11 +65,11 @@ class SignInEmailView extends StatelessWidget {
                 width: double.maxFinite,
                 height: 56,
                 child: CustomButton(
-                  onTap: () {
+                  onTap: () async {
                     if (formKey.currentState?.validate() ?? false) {
                       viewModel.setTempUser();
 
-                      Navigator.push(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => SignInPasswordView(),
@@ -88,7 +88,7 @@ class SignInEmailView extends StatelessWidget {
                     style: TextStyle(color: WorkoutAppColors.grey0),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.push(
+                    onPressed: () async => await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (_) => SignUpView(),

@@ -33,18 +33,14 @@ class DashboardView extends StatelessWidget {
                       SvgPicture.asset(
                         "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/banner_icon.svg",
                       ),
-                      GestureDetector(
-                        onTap: !viewModel.isBusy
-                            ? () async {
-                                await viewModel.getNotifications();
+                      NotificationBellIcon(
+                          onPressed: !viewModel.isBusy
+                              ? () async {
+                                  await viewModel.getNotifications();
 
-                                await viewModel.notificationsModal();
-                              }
-                            : () {},
-                        child: SvgPicture.asset(
-                          "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/notification_bell_icon_active.svg",
-                        ),
-                      ),
+                                  await viewModel.notificationsModal();
+                                }
+                              : () {})
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -175,6 +171,24 @@ class DashboardView extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class NotificationBellIcon extends StatelessWidget {
+  final VoidCallback onPressed;
+  const NotificationBellIcon({
+    required this.onPressed,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: SvgPicture.asset(
+        "/Users/kwe/flutter-projects/Example-UI-Flutter/example_ui/assets/notification_bell_icon_active.svg",
       ),
     );
   }
