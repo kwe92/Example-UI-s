@@ -30,7 +30,7 @@ void main() {
           final mockToastService = TestHelperMocks.getMockToastService();
           final mockNotificationService = TestHelperMocks.getMockNotificationService();
 
-          final ToastService toastService = ToastService(mockAuthService);
+          final ToastService toastService = ToastService();
 
           await TestHelperMocks.pumpViewWithProviders(
               SignInEmailView(),

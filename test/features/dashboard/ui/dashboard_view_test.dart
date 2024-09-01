@@ -12,8 +12,6 @@ void main() {
   group("DashboardView - Tests", () {
     late MockNotificationService mockNotificationService;
 
-    late MockAuthService mockAuthService;
-
     late ToastService toastService;
 
     late DashboardViewModel viewModel;
@@ -21,9 +19,7 @@ void main() {
     setUp(() {
       mockNotificationService = TestHelperMocks.getMockNotificationService();
 
-      mockAuthService = TestHelperMocks.getMockAuthService();
-
-      toastService = ToastService(mockAuthService);
+      toastService = ToastService();
 
       viewModel = DashboardViewModel(mockNotificationService, toastService);
     });
