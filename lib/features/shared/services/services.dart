@@ -12,4 +12,4 @@ FirebaseService get firebaseService => FirebaseService(FirebaseAuth.instance);
 
 AuthService get authService => AuthService(firebaseService);
 
-ToastService get toastService => ToastService(authService);
+ToastService get toastService => ToastService();
