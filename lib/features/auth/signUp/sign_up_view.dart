@@ -5,6 +5,7 @@ import 'package:example_ui/features/auth/signUp/signUpSetPassword/set_password_v
 import 'package:example_ui/features/auth/signUp/sign_up_view_model.dart';
 import 'package:example_ui/features/shared/services/string_service.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
+import 'package:example_ui/features/shared/widgets/custom_page_route_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -85,13 +86,13 @@ class SignUpView extends StatelessWidget {
               width: double.maxFinite,
               height: 56,
               child: CustomButton(
-                onTap: () {
+                onTap: () async {
                   if (formKey.currentState?.validate() ?? false) {
                     viewModel.setTempUser();
-                    Navigator.push(
+                    await Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => SetPasswordView(),
+                      CustomPageRouteBuilder.sharedAxisTransition(
+                        pageBuilder: (context, primaryAnimation, secondaryAnimation) => SetPasswordView(),
                       ),
                     );
                   }
