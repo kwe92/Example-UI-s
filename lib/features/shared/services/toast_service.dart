@@ -3,6 +3,7 @@ import 'package:example_ui/features/dashboard/model/workout_progress.dart';
 import 'package:example_ui/features/shared/services/modals/continueExerciseBottomModal/continue_exercise_bottom_modal.dart';
 import 'package:example_ui/features/shared/services/modals/forgotPasswordModal/forgot_password_modal.dart';
 import 'package:example_ui/features/shared/services/modals/notificationsModal/notifications_modal.dart';
+import 'package:example_ui/features/shared/transitions/fade_wrapper.dart';
 import 'package:flutter/material.dart';
 
 /// Responsible for showing banners, popups, and modals.
@@ -31,10 +32,18 @@ class ToastService {
         builder: (context) => const NotificationsModal(),
       );
 
-  void continueExerciseBottomModal(WorkoutProgress workoutProgress) => showModalBottomSheet(
-        context: WidgetKey.navigatorKey.currentState!.context,
-        builder: (context) => ContinueExerciseBottomModal(workoutProgress: workoutProgress),
-      );
+  void continueExerciseBottomModal(WorkoutProgress workoutProgress) {
+    const duration = Duration(milliseconds: 500);
+    showModalBottomSheet(
+      sheetAnimationStyle: AnimationStyle(duration: duration),
+      context: WidgetKey.navigatorKey.currentState!.context,
+      //?? added FadeWrapper to continueExerciseBottomModal
+      builder: (context) => FadeWrapper(
+        duration: duration,
+        child: ContinueExerciseBottomModal(workoutProgress: workoutProgress),
+      ),
+    );
+  }
 
   Future<bool> forgotPasswordModal() async =>
       await showDialog<bool>(
