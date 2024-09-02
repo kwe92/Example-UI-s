@@ -19,110 +19,108 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<SignUpViewModel>();
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24),
-              const Center(
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 24),
+            const Center(
+              child: Text(
+                "Sign Up",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 80),
-              Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Full Name",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: nameController,
-                      onChanged: viewModel.setName,
-                      textInputAction: TextInputAction.done,
-                      decoration: const InputDecoration(
-                        hintText: "Enter full name",
-                      ),
-                      validator: (value) => StringService.isEmpty(value) ? "name can't be empty." : null,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      "Email Address",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: emailController,
-                      onChanged: viewModel.setEmail,
-                      textInputAction: TextInputAction.done,
-                      decoration: const InputDecoration(
-                        hintText: "Enter email address",
-                      ),
-                      validator: StringService.emailValidator,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.maxFinite,
-                height: 56,
-                child: CustomButton(
-                  onTap: () {
-                    if (formKey.currentState?.validate() ?? false) {
-                      viewModel.setTempUser();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => SetPasswordView(),
-                        ),
-                      );
-                    }
-                  },
-                  label: "Continue",
-                ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            const SizedBox(height: 80),
+            Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Already have an account?",
-                    style: TextStyle(color: WorkoutAppColors.grey0),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text(
-                      "Sign In",
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                    "Full Name",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: nameController,
+                    onChanged: viewModel.setName,
+                    textInputAction: TextInputAction.done,
+                    decoration: const InputDecoration(
+                      hintText: "Enter full name",
+                    ),
+                    validator: (value) => StringService.isEmpty(value) ? "name can't be empty." : null,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Email Address",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: emailController,
+                    onChanged: viewModel.setEmail,
+                    textInputAction: TextInputAction.done,
+                    decoration: const InputDecoration(
+                      hintText: "Enter email address",
+                    ),
+                    validator: StringService.emailValidator,
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
-              const HorizontalSeparator(),
-              const SizedBox(height: 32),
-              const SocialMediaIcons(),
-            ],
-          ),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.maxFinite,
+              height: 56,
+              child: CustomButton(
+                onTap: () {
+                  if (formKey.currentState?.validate() ?? false) {
+                    viewModel.setTempUser();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => SetPasswordView(),
+                      ),
+                    );
+                  }
+                },
+                label: "Continue",
+              ),
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Already have an account?",
+                  style: TextStyle(color: WorkoutAppColors.grey0),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    "Sign In",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+            const HorizontalSeparator(),
+            const SizedBox(height: 32),
+            const SocialMediaIcons(),
+          ],
         ),
       ),
     );

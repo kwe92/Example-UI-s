@@ -6,6 +6,7 @@ import 'package:example_ui/features/auth/signIn/shared/social_media_icons.dart';
 import 'package:example_ui/features/auth/signUp/sign_up_view.dart';
 import 'package:example_ui/features/shared/services/string_service.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
+import 'package:example_ui/features/shared/widgets/custom_page_route_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -68,11 +69,11 @@ class SignInEmailView extends StatelessWidget {
                   onTap: () async {
                     if (formKey.currentState?.validate() ?? false) {
                       viewModel.setTempUser();
-
+                      //?? added CustomPageRouteBuilder.sharedAxisTransition between routes
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => SignInPasswordView(),
+                        CustomPageRouteBuilder.sharedAxisTransition(
+                          pageBuilder: (context, animation, secondaryAnimation) => SignInPasswordView(),
                         ),
                       );
                     }
@@ -90,9 +91,15 @@ class SignInEmailView extends StatelessWidget {
                   TextButton(
                     onPressed: () async => await Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => SignUpView(),
+                      CustomPageRouteBuilder.sharedAxisTransition(
+                        pageBuilder: (context, animation, secondaryAnimation) => SignUpView(),
                       ),
+
+                      //!! default Choppy navigation without transition example
+                      // MaterialPageRoute(
+                      //   builder: (_) => SignUpView(),
+                      // ),
+                      //!!
                     ),
                     child: const Text(
                       "Create Account",
