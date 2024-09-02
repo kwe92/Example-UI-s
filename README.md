@@ -7,6 +7,10 @@
 - Widget Tests
 - Unit Tests
 
+## Shimmer Animation and Fade Transition
+
+https://github.com/user-attachments/assets/e8e53275-0930-4519-8170-027a73d41195
+
 ## Workout App Screenshots
 
 <img width="422" alt="Screenshot 2024-07-01 at 11 06 14 AM" src="https://github.com/kwe92/UI-Examples/assets/47009536/3314799a-13f0-4fb8-b8c9-99e98eb35db5">
