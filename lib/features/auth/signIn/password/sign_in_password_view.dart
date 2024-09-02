@@ -94,7 +94,7 @@ class SignInPasswordView extends StatelessWidget {
                               await viewModel.signInWithEmailAndPassword();
 
                               if (viewModel.successfulLogin) {
-                                await Navigator.push(
+                                await Navigator.pushReplacement(
                                   context,
                                   CustomPageRouteBuilder.sharedAxisTransition(
                                     pageBuilder: (context, animation, secondaryAnimation) => const NavigatorView(),
@@ -116,13 +116,6 @@ class SignInPasswordView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () async {
-                        // TODO: figure out way flashing occurs when navigating to SignUpView from SignInPasswordView
-                        // await Navigator.push(
-                        //   context,
-                        //   CustomPageRouteBuilder.sharedAxisTransition(
-                        //     pageBuilder: (context, animation, secondaryAnimation) => SignUpView(),
-                        //   ),
-                        // );
                         await Navigator.pushReplacement(
                           context,
                           CustomPageRouteBuilder.sharedAxisTransition(
