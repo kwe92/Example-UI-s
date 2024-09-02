@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 class WorkoutAppTheme {
   WorkoutAppTheme._();
   static ThemeData getTheme() {
+    const backgroundColor = Colors.black;
+
     return ThemeData(
       colorScheme: const ColorScheme.dark(
         primary: WorkoutAppColors.mainThemeColor,
         onSurface: WorkoutAppColors.primaryTextColor,
       ),
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: backgroundColor,
       appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
       inputDecorationTheme: inputDecorationTheme,
       outlinedButtonTheme: mainButtonTheme,
@@ -22,6 +24,8 @@ class WorkoutAppTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
+      canvasColor:
+          backgroundColor, // sometimes the SharedAxisTransition uses the canvas color for some reason so the canvas color should match the scaffoldBackgroundColor
     );
   }
 }

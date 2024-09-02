@@ -12,7 +12,7 @@ class ExerciseViewModel extends ExtendedChangeNotifier {
 
   ExerciseViewModel(this._notificationService, this._toastService);
 
-  Future<void> notificationsModal() async => await _toastService.notificationsModal(notifications: notifications);
+  Future<void> notificationsModal() async => await _toastService.notificationsModal();
 
   Future<void> getNotifications() async {
     setBusy(true);

@@ -4,7 +4,6 @@ import 'package:example_ui/features/dashboard/ui/widgets/exercise_list_tile.dart
 import 'package:example_ui/features/dashboard/ui/widgets/header_text_button.dart';
 import 'package:example_ui/features/dashboard/ui/widgets/progress_card.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
-import 'package:example_ui/features/shared/widgets/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +35,7 @@ class DashboardView extends StatelessWidget {
                       NotificationBellIcon(
                           onPressed: !viewModel.isBusy
                               ? () async {
-                                  await viewModel.getNotifications();
+                                  viewModel.getNotifications();
 
                                   await viewModel.notificationsModal();
                                 }
@@ -167,7 +166,6 @@ class DashboardView extends StatelessWidget {
                   ),
                 ],
               ),
-              if (viewModel.isBusy) const LoadingSpinner()
             ],
           ),
         ),

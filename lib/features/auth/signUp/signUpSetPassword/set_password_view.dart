@@ -6,6 +6,7 @@ import 'package:example_ui/features/auth/signUp/signUpSetPassword/set_password_v
 import 'package:example_ui/features/navigator/navigator_view.dart';
 import 'package:example_ui/features/shared/services/string_service.dart';
 import 'package:example_ui/features/shared/widgets/custom_button.dart';
+import 'package:example_ui/features/shared/widgets/custom_page_route_builder.dart';
 import 'package:example_ui/features/shared/widgets/loading_spinner.dart';
 import 'package:example_ui/features/shared/widgets/visibility_widget.dart';
 import 'package:flutter/material.dart';
@@ -118,8 +119,8 @@ class SetPasswordView extends StatelessWidget {
                                 if (viewModel.successfulLogin) {
                                   await Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (_) => const NavigatorView(),
+                                    CustomPageRouteBuilder.sharedAxisTransition(
+                                      pageBuilder: (context, primaryAnimation, secondaryAnimation) => const NavigatorView(),
                                     ),
                                   );
                                 }

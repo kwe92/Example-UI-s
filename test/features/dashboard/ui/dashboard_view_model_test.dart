@@ -14,7 +14,7 @@ void main() {
     final viewModel = DashboardViewModel(mockNotificationService, mockToastService);
 
     // Act
-    await viewModel.getNotifications();
+    viewModel.getNotifications();
 
     // Assert
 

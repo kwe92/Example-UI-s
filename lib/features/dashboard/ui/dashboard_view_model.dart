@@ -33,13 +33,25 @@ class DashboardViewModel extends ExtendedChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getNotifications() async {
+  void getNotifications() {
     setBusy(true);
-    await _notificationService.getNotifications();
-    setBusy(false);
+    debugPrint('notifications future started.');
+
+    final Future<void> notificationsFuture = _notificationService.getNotifications();
+
+    notificationsFuture.timeout(const Duration(seconds: 5)).whenComplete(() {
+      setBusy(false);
+      debugPrint('notifications future complete.');
+    }).catchError((err) {
+      debugPrint('Error in getNotifications: ${err.toString()}');
+      _toastService.showSnackBar(
+        'There was an issue retrieving notifications, please check your connection.',
+        Colors.red.shade400,
+      );
+    });
   }
 
-  Future<void> notificationsModal() async => await _toastService.notificationsModal(notifications: notifications);
+  Future<void> notificationsModal() async => await _toastService.notificationsModal();
 
   Future<void> continueExerciseModal(WorkoutProgress workoutProgress) async => _toastService.continueExerciseBottomModal(workoutProgress);
 
